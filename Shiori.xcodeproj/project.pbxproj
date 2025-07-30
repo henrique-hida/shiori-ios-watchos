@@ -1,0 +1,888 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DA32E39BDF80045A198 /* ShioriApp.swift */; };
+		B40B4DA62E39BDF80045A198 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DA52E39BDF80045A198 /* ContentView.swift */; };
+		B40B4DA82E39BDF90045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DA72E39BDF90045A198 /* Assets.xcassets */; };
+		B40B4DAB2E39BDF90045A198 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DAA2E39BDF90045A198 /* Preview Assets.xcassets */; };
+		B40B4DB62E39BDF90045A198 /* ShioriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DB52E39BDF90045A198 /* ShioriTests.swift */; };
+		B40B4DC12E39BDF90045A198 /* ShioriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DC02E39BDF90045A198 /* ShioriUITests.swift */; };
+		B40B4DC62E39BDF90045A198 /* Shiori WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B40B4DC52E39BDF90045A198 /* Shiori WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B40B4DCB2E39BDFA0045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DCA2E39BDFA0045A198 /* Assets.xcassets */; };
+		B40B4DD22E39BDFA0045A198 /* Shiori WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B40B4DD12E39BDFA0045A198 /* Shiori WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B40B4DD72E39BDFA0045A198 /* ShioriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DD62E39BDFA0045A198 /* ShioriApp.swift */; };
+		B40B4DD92E39BDFA0045A198 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DD82E39BDFA0045A198 /* ContentView.swift */; };
+		B40B4DDB2E39BDFA0045A198 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DDA2E39BDFA0045A198 /* NotificationController.swift */; };
+		B40B4DDD2E39BDFA0045A198 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DDC2E39BDFA0045A198 /* NotificationView.swift */; };
+		B40B4DDF2E39BDFA0045A198 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DDE2E39BDFA0045A198 /* ComplicationController.swift */; };
+		B40B4DE12E39BDFB0045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE02E39BDFB0045A198 /* Assets.xcassets */; };
+		B40B4DE42E39BDFB0045A198 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B40B4DB22E39BDF90045A198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B40B4D982E39BDF70045A198 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B40B4D9F2E39BDF80045A198;
+			remoteInfo = Shiori;
+		};
+		B40B4DBD2E39BDF90045A198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B40B4D982E39BDF70045A198 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B40B4D9F2E39BDF80045A198;
+			remoteInfo = Shiori;
+		};
+		B40B4DC72E39BDF90045A198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B40B4D982E39BDF70045A198 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B40B4DC42E39BDF90045A198;
+			remoteInfo = "Shiori WatchKit App";
+		};
+		B40B4DD32E39BDFA0045A198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B40B4D982E39BDF70045A198 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B40B4DD02E39BDFA0045A198;
+			remoteInfo = "Shiori WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B40B4DEC2E39BDFB0045A198 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B40B4DD22E39BDFA0045A198 /* Shiori WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DF02E39BDFB0045A198 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B40B4DC62E39BDF90045A198 /* Shiori WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B40B4DA02E39BDF80045A198 /* Shiori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiori.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40B4DA32E39BDF80045A198 /* ShioriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriApp.swift; sourceTree = "<group>"; };
+		B40B4DA52E39BDF80045A198 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B40B4DA72E39BDF90045A198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B40B4DAA2E39BDF90045A198 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B40B4DAC2E39BDF90045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40B4DB12E39BDF90045A198 /* ShioriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShioriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40B4DB52E39BDF90045A198 /* ShioriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriTests.swift; sourceTree = "<group>"; };
+		B40B4DB72E39BDF90045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40B4DBC2E39BDF90045A198 /* ShioriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShioriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40B4DC02E39BDF90045A198 /* ShioriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriUITests.swift; sourceTree = "<group>"; };
+		B40B4DC22E39BDF90045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40B4DC52E39BDF90045A198 /* Shiori WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shiori WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40B4DCA2E39BDFA0045A198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B40B4DCC2E39BDFA0045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40B4DD12E39BDFA0045A198 /* Shiori WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Shiori WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40B4DD62E39BDFA0045A198 /* ShioriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriApp.swift; sourceTree = "<group>"; };
+		B40B4DD82E39BDFA0045A198 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B40B4DDA2E39BDFA0045A198 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		B40B4DDC2E39BDFA0045A198 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		B40B4DDE2E39BDFA0045A198 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		B40B4DE02E39BDFB0045A198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B40B4DE52E39BDFB0045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40B4DE62E39BDFB0045A198 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B40B4D9D2E39BDF80045A198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DAE2E39BDF90045A198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DB92E39BDF90045A198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DCE2E39BDFA0045A198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B40B4D972E39BDF70045A198 = {
+			isa = PBXGroup;
+			children = (
+				B40B4DA22E39BDF80045A198 /* Shiori */,
+				B40B4DB42E39BDF90045A198 /* ShioriTests */,
+				B40B4DBF2E39BDF90045A198 /* ShioriUITests */,
+				B40B4DC92E39BDF90045A198 /* Shiori WatchKit App */,
+				B40B4DD52E39BDFA0045A198 /* Shiori WatchKit Extension */,
+				B40B4DA12E39BDF80045A198 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B40B4DA12E39BDF80045A198 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DA02E39BDF80045A198 /* Shiori.app */,
+				B40B4DB12E39BDF90045A198 /* ShioriTests.xctest */,
+				B40B4DBC2E39BDF90045A198 /* ShioriUITests.xctest */,
+				B40B4DC52E39BDF90045A198 /* Shiori WatchKit App.app */,
+				B40B4DD12E39BDFA0045A198 /* Shiori WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B40B4DA22E39BDF80045A198 /* Shiori */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DA32E39BDF80045A198 /* ShioriApp.swift */,
+				B40B4DA52E39BDF80045A198 /* ContentView.swift */,
+				B40B4DA72E39BDF90045A198 /* Assets.xcassets */,
+				B40B4DAC2E39BDF90045A198 /* Info.plist */,
+				B40B4DA92E39BDF90045A198 /* Preview Content */,
+			);
+			path = Shiori;
+			sourceTree = "<group>";
+		};
+		B40B4DA92E39BDF90045A198 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DAA2E39BDF90045A198 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B40B4DB42E39BDF90045A198 /* ShioriTests */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DB52E39BDF90045A198 /* ShioriTests.swift */,
+				B40B4DB72E39BDF90045A198 /* Info.plist */,
+			);
+			path = ShioriTests;
+			sourceTree = "<group>";
+		};
+		B40B4DBF2E39BDF90045A198 /* ShioriUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DC02E39BDF90045A198 /* ShioriUITests.swift */,
+				B40B4DC22E39BDF90045A198 /* Info.plist */,
+			);
+			path = ShioriUITests;
+			sourceTree = "<group>";
+		};
+		B40B4DC92E39BDF90045A198 /* Shiori WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DCA2E39BDFA0045A198 /* Assets.xcassets */,
+				B40B4DCC2E39BDFA0045A198 /* Info.plist */,
+			);
+			path = "Shiori WatchKit App";
+			sourceTree = "<group>";
+		};
+		B40B4DD52E39BDFA0045A198 /* Shiori WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DD62E39BDFA0045A198 /* ShioriApp.swift */,
+				B40B4DD82E39BDFA0045A198 /* ContentView.swift */,
+				B40B4DDA2E39BDFA0045A198 /* NotificationController.swift */,
+				B40B4DDC2E39BDFA0045A198 /* NotificationView.swift */,
+				B40B4DDE2E39BDFA0045A198 /* ComplicationController.swift */,
+				B40B4DE02E39BDFB0045A198 /* Assets.xcassets */,
+				B40B4DE52E39BDFB0045A198 /* Info.plist */,
+				B40B4DE62E39BDFB0045A198 /* PushNotificationPayload.apns */,
+				B40B4DE22E39BDFB0045A198 /* Preview Content */,
+			);
+			path = "Shiori WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		B40B4DE22E39BDFB0045A198 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B40B4D9F2E39BDF80045A198 /* Shiori */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B40B4DF12E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "Shiori" */;
+			buildPhases = (
+				B40B4D9C2E39BDF80045A198 /* Sources */,
+				B40B4D9D2E39BDF80045A198 /* Frameworks */,
+				B40B4D9E2E39BDF80045A198 /* Resources */,
+				B40B4DF02E39BDFB0045A198 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B40B4DC82E39BDF90045A198 /* PBXTargetDependency */,
+			);
+			name = Shiori;
+			productName = Shiori;
+			productReference = B40B4DA02E39BDF80045A198 /* Shiori.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B40B4DB02E39BDF90045A198 /* ShioriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B40B4DF42E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "ShioriTests" */;
+			buildPhases = (
+				B40B4DAD2E39BDF90045A198 /* Sources */,
+				B40B4DAE2E39BDF90045A198 /* Frameworks */,
+				B40B4DAF2E39BDF90045A198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B40B4DB32E39BDF90045A198 /* PBXTargetDependency */,
+			);
+			name = ShioriTests;
+			productName = ShioriTests;
+			productReference = B40B4DB12E39BDF90045A198 /* ShioriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B40B4DBB2E39BDF90045A198 /* ShioriUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B40B4DF72E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "ShioriUITests" */;
+			buildPhases = (
+				B40B4DB82E39BDF90045A198 /* Sources */,
+				B40B4DB92E39BDF90045A198 /* Frameworks */,
+				B40B4DBA2E39BDF90045A198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B40B4DBE2E39BDF90045A198 /* PBXTargetDependency */,
+			);
+			name = ShioriUITests;
+			productName = ShioriUITests;
+			productReference = B40B4DBC2E39BDF90045A198 /* ShioriUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B40B4DC42E39BDF90045A198 /* Shiori WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B40B4DED2E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "Shiori WatchKit App" */;
+			buildPhases = (
+				B40B4DC32E39BDF90045A198 /* Resources */,
+				B40B4DEC2E39BDFB0045A198 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B40B4DD42E39BDFA0045A198 /* PBXTargetDependency */,
+			);
+			name = "Shiori WatchKit App";
+			productName = "Shiori WatchKit App";
+			productReference = B40B4DC52E39BDF90045A198 /* Shiori WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		B40B4DD02E39BDFA0045A198 /* Shiori WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B40B4DE92E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "Shiori WatchKit Extension" */;
+			buildPhases = (
+				B40B4DCD2E39BDFA0045A198 /* Sources */,
+				B40B4DCE2E39BDFA0045A198 /* Frameworks */,
+				B40B4DCF2E39BDFA0045A198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shiori WatchKit Extension";
+			productName = "Shiori WatchKit Extension";
+			productReference = B40B4DD12E39BDFA0045A198 /* Shiori WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B40B4D982E39BDF70045A198 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					B40B4D9F2E39BDF80045A198 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					B40B4DB02E39BDF90045A198 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = B40B4D9F2E39BDF80045A198;
+					};
+					B40B4DBB2E39BDF90045A198 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = B40B4D9F2E39BDF80045A198;
+					};
+					B40B4DC42E39BDF90045A198 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					B40B4DD02E39BDFA0045A198 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = B40B4D9B2E39BDF70045A198 /* Build configuration list for PBXProject "Shiori" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B40B4D972E39BDF70045A198;
+			productRefGroup = B40B4DA12E39BDF80045A198 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B40B4D9F2E39BDF80045A198 /* Shiori */,
+				B40B4DB02E39BDF90045A198 /* ShioriTests */,
+				B40B4DBB2E39BDF90045A198 /* ShioriUITests */,
+				B40B4DC42E39BDF90045A198 /* Shiori WatchKit App */,
+				B40B4DD02E39BDFA0045A198 /* Shiori WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B40B4D9E2E39BDF80045A198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DAB2E39BDF90045A198 /* Preview Assets.xcassets in Resources */,
+				B40B4DA82E39BDF90045A198 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DAF2E39BDF90045A198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DBA2E39BDF90045A198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DC32E39BDF90045A198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DCB2E39BDFA0045A198 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DCF2E39BDFA0045A198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DE42E39BDFB0045A198 /* Preview Assets.xcassets in Resources */,
+				B40B4DE12E39BDFB0045A198 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B40B4D9C2E39BDF80045A198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DA62E39BDF80045A198 /* ContentView.swift in Sources */,
+				B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DAD2E39BDF90045A198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DB62E39BDF90045A198 /* ShioriTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DB82E39BDF90045A198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DC12E39BDF90045A198 /* ShioriUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40B4DCD2E39BDFA0045A198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40B4DDB2E39BDFA0045A198 /* NotificationController.swift in Sources */,
+				B40B4DD92E39BDFA0045A198 /* ContentView.swift in Sources */,
+				B40B4DDF2E39BDFA0045A198 /* ComplicationController.swift in Sources */,
+				B40B4DD72E39BDFA0045A198 /* ShioriApp.swift in Sources */,
+				B40B4DDD2E39BDFA0045A198 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B40B4DB32E39BDF90045A198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B40B4D9F2E39BDF80045A198 /* Shiori */;
+			targetProxy = B40B4DB22E39BDF90045A198 /* PBXContainerItemProxy */;
+		};
+		B40B4DBE2E39BDF90045A198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B40B4D9F2E39BDF80045A198 /* Shiori */;
+			targetProxy = B40B4DBD2E39BDF90045A198 /* PBXContainerItemProxy */;
+		};
+		B40B4DC82E39BDF90045A198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B40B4DC42E39BDF90045A198 /* Shiori WatchKit App */;
+			targetProxy = B40B4DC72E39BDF90045A198 /* PBXContainerItemProxy */;
+		};
+		B40B4DD42E39BDFA0045A198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B40B4DD02E39BDFA0045A198 /* Shiori WatchKit Extension */;
+			targetProxy = B40B4DD32E39BDFA0045A198 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B40B4DE72E39BDFB0045A198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B40B4DE82E39BDFB0045A198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		B40B4DEA2E39BDFB0045A198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Shiori WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Shiori WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.Shiori.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		B40B4DEB2E39BDFB0045A198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Shiori WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Shiori WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.Shiori.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		B40B4DEE2E39BDFB0045A198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				IBSC_MODULE = Shiori_WatchKit_Extension;
+				INFOPLIST_FILE = "Shiori WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.Shiori.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		B40B4DEF2E39BDFB0045A198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				IBSC_MODULE = Shiori_WatchKit_Extension;
+				INFOPLIST_FILE = "Shiori WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.Shiori.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		B40B4DF22E39BDFB0045A198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Shiori/Preview Content\"";
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Shiori/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.Shiori;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B40B4DF32E39BDFB0045A198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Shiori/Preview Content\"";
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Shiori/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.Shiori;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B40B4DF52E39BDFB0045A198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				INFOPLIST_FILE = ShioriTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.ShioriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiori.app/Shiori";
+			};
+			name = Debug;
+		};
+		B40B4DF62E39BDFB0045A198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				INFOPLIST_FILE = ShioriTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.ShioriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shiori.app/Shiori";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B40B4DF82E39BDFB0045A198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				INFOPLIST_FILE = ShioriUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.ShioriUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Shiori;
+			};
+			name = Debug;
+		};
+		B40B4DF92E39BDFB0045A198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R9VB7Y576;
+				INFOPLIST_FILE = ShioriUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohida.ShioriUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Shiori;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B40B4D9B2E39BDF70045A198 /* Build configuration list for PBXProject "Shiori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40B4DE72E39BDFB0045A198 /* Debug */,
+				B40B4DE82E39BDFB0045A198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B40B4DE92E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "Shiori WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40B4DEA2E39BDFB0045A198 /* Debug */,
+				B40B4DEB2E39BDFB0045A198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B40B4DED2E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "Shiori WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40B4DEE2E39BDFB0045A198 /* Debug */,
+				B40B4DEF2E39BDFB0045A198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B40B4DF12E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "Shiori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40B4DF22E39BDFB0045A198 /* Debug */,
+				B40B4DF32E39BDFB0045A198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B40B4DF42E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "ShioriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40B4DF52E39BDFB0045A198 /* Debug */,
+				B40B4DF62E39BDFB0045A198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B40B4DF72E39BDFB0045A198 /* Build configuration list for PBXNativeTarget "ShioriUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40B4DF82E39BDFB0045A198 /* Debug */,
+				B40B4DF92E39BDFB0045A198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B40B4D982E39BDF70045A198 /* Project object */;
+}
