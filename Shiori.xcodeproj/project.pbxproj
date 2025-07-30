@@ -170,6 +170,10 @@
 			children = (
 				B40B4DA32E39BDF80045A198 /* ShioriApp.swift */,
 				B40B4DA52E39BDF80045A198 /* ContentView.swift */,
+				B40B4DFF2E39BE170045A198 /* Views */,
+				B40B4E022E39BE5F0045A198 /* Utilities */,
+				B40B4E012E39BE2D0045A198 /* Services */,
+				B40B4E002E39BE230045A198 /* Models */,
 				B40B4DA72E39BDF90045A198 /* Assets.xcassets */,
 				B40B4DAC2E39BDF90045A198 /* Info.plist */,
 				B40B4DA92E39BDF90045A198 /* Preview Content */,
@@ -234,6 +238,34 @@
 				B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B40B4DFF2E39BE170045A198 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B40B4E002E39BE230045A198 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B40B4E012E39BE2D0045A198 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B40B4E022E39BE5F0045A198 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
