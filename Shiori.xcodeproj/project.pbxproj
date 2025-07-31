@@ -23,6 +23,8 @@
 		B40B4DDF2E39BDFA0045A198 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DDE2E39BDFA0045A198 /* ComplicationController.swift */; };
 		B40B4DE12E39BDFB0045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE02E39BDFB0045A198 /* Assets.xcassets */; };
 		B40B4DE42E39BDFB0045A198 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */; };
+		B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */; };
+		B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B40B4DE52E39BDFB0045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B40B4DE62E39BDFB0045A198 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,7 @@
 		B40B4DFF2E39BE170045A198 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4EAEFD02E3AEE7400CC1BB0 /* HomeView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +271,15 @@
 			children = (
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B4EAEFD02E3AEE7400CC1BB0 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */,
+				B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,8 +472,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */,
 				B40B4DA62E39BDF80045A198 /* ContentView.swift in Sources */,
 				B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */,
+				B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
