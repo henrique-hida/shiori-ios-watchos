@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DA32E39BDF80045A198 /* ShioriApp.swift */; };
-		B40B4DA62E39BDF80045A198 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DA52E39BDF80045A198 /* ContentView.swift */; };
 		B40B4DA82E39BDF90045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DA72E39BDF90045A198 /* Assets.xcassets */; };
 		B40B4DAB2E39BDF90045A198 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DAA2E39BDF90045A198 /* Preview Assets.xcassets */; };
 		B40B4DB62E39BDF90045A198 /* ShioriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DB52E39BDF90045A198 /* ShioriTests.swift */; };
@@ -23,6 +22,9 @@
 		B40B4DDF2E39BDFA0045A198 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B4DDE2E39BDFA0045A198 /* ComplicationController.swift */; };
 		B40B4DE12E39BDFB0045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE02E39BDFB0045A198 /* Assets.xcassets */; };
 		B40B4DE42E39BDFB0045A198 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */; };
+		B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721272E3C6C3900E45081 /* SecretsReader.swift */; };
+		B48721442E3C792900E45081 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721432E3C792900E45081 /* AIService.swift */; };
+		B48721512E3C81D100E45081 /* SumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721502E3C81D100E45081 /* SumRepository.swift */; };
 		B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */; };
 		B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -86,7 +88,6 @@
 /* Begin PBXFileReference section */
 		B40B4DA02E39BDF80045A198 /* Shiori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40B4DA32E39BDF80045A198 /* ShioriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriApp.swift; sourceTree = "<group>"; };
-		B40B4DA52E39BDF80045A198 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B40B4DA72E39BDF90045A198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B40B4DAA2E39BDF90045A198 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B40B4DAC2E39BDF90045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +110,10 @@
 		B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B40B4DE52E39BDFB0045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B40B4DE62E39BDFB0045A198 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B48721262E3C686900E45081 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		B48721272E3C6C3900E45081 /* SecretsReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsReader.swift; sourceTree = "<group>"; };
+		B48721432E3C792900E45081 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		B48721502E3C81D100E45081 /* SumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumRepository.swift; sourceTree = "<group>"; };
 		B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +153,7 @@
 		B40B4D972E39BDF70045A198 = {
 			isa = PBXGroup;
 			children = (
+				B48721262E3C686900E45081 /* Config.xcconfig */,
 				B40B4DA22E39BDF80045A198 /* Shiori */,
 				B40B4DB42E39BDF90045A198 /* ShioriTests */,
 				B40B4DBF2E39BDF90045A198 /* ShioriUITests */,
@@ -173,11 +179,11 @@
 			isa = PBXGroup;
 			children = (
 				B40B4DA32E39BDF80045A198 /* ShioriApp.swift */,
-				B40B4DA52E39BDF80045A198 /* ContentView.swift */,
 				B40B4DFF2E39BE170045A198 /* Views */,
-				B40B4E022E39BE5F0045A198 /* Utilities */,
 				B40B4E012E39BE2D0045A198 /* Services */,
+				B487214F2E3C81AF00E45081 /* Repositories */,
 				B40B4E002E39BE230045A198 /* Models */,
+				B40B4E022E39BE5F0045A198 /* Utilities */,
 				B40B4DA72E39BDF90045A198 /* Assets.xcassets */,
 				B40B4DAC2E39BDF90045A198 /* Info.plist */,
 				B40B4DA92E39BDF90045A198 /* Preview Content */,
@@ -262,6 +268,7 @@
 		B40B4E012E39BE2D0045A198 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B48721432E3C792900E45081 /* AIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -269,8 +276,17 @@
 		B40B4E022E39BE5F0045A198 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B48721272E3C6C3900E45081 /* SecretsReader.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B487214F2E3C81AF00E45081 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B48721502E3C81D100E45081 /* SumRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		B4EAEFD02E3AEE7400CC1BB0 /* HomeView */ = {
@@ -473,9 +489,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */,
-				B40B4DA62E39BDF80045A198 /* ContentView.swift in Sources */,
+				B48721442E3C792900E45081 /* AIService.swift in Sources */,
 				B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */,
 				B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */,
+				B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */,
+				B48721512E3C81D100E45081 /* SumRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +553,7 @@
 /* Begin XCBuildConfiguration section */
 		B40B4DE72E39BDFB0045A198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48721262E3C686900E45081 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -646,6 +665,7 @@
 		};
 		B40B4DEA2E39BDFB0045A198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48721262E3C686900E45081 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -695,6 +715,7 @@
 		};
 		B40B4DEE2E39BDFB0045A198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48721262E3C686900E45081 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -736,6 +757,7 @@
 		};
 		B40B4DF22E39BDFB0045A198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48721262E3C686900E45081 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -783,6 +805,7 @@
 		};
 		B40B4DF52E39BDFB0045A198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48721262E3C686900E45081 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -830,6 +853,7 @@
 		};
 		B40B4DF82E39BDFB0045A198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48721262E3C686900E45081 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

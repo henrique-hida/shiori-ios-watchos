@@ -10,6 +10,8 @@ import Foundation
 
 struct HomeView: View {
     
+    @StateObject private var viewModel = HomeViewModel()
+    
     @State private var sumInputTitle: String = "Resumir notícia"
     @State private var sumContent: String = ""
     
@@ -54,6 +56,7 @@ struct HomeView: View {
                                 textTextEditor
                             }
                         }
+                        resultsView
                         VStack(spacing: 10) {
                             newsMainCard
                             newsPastCard
@@ -83,6 +86,59 @@ struct HomeView_Previews: PreviewProvider {
 
 //MARK: COMPONENTS
 extension HomeView {
+    @ViewBuilder
+        var resultsView: some View {
+            switch viewModel.state {
+                
+            case .idle:
+                EmptyView()
+                
+            case .loading:
+                VStack {
+                    ProgressView()
+                    Text("Resumindo...")
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                }
+                .padding()
+                
+            case .success(let summaryText):
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Resumo Gerado")
+                        .font(.headline)
+                        .foregroundColor(mainColor)
+                    Text(summaryText)
+                        .font(.body)
+                    Button("Fazer novo resumo") {
+                        viewModel.resetState()
+                        sumContent = ""
+                    }
+                    .padding(.top, 5)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.secondary.opacity(0.1))
+                .cornerRadius(10)
+                
+            case .error(let errorMessage):
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Ocorreu um Erro")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                    Text(errorMessage)
+                        .font(.body)
+                    Button("Tentar Novamente") {
+                        viewModel.resetState()
+                    }
+                    .padding(.top, 5)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.red.opacity(0.1))
+                .cornerRadius(10)
+            }
+        }
+    
     var sumInputLabel: some View {
         HStack {
             Text(sumInputTitle)
@@ -111,7 +167,7 @@ extension HomeView {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(mainColor)
             Button(action: {
-                
+                viewModel.summarizeButtonTapped(for: sumContent)
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(mainColor)
