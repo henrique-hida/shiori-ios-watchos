@@ -13,16 +13,12 @@ struct HomeView: View {
     @State private var sumInputTitle: String = "Resumir notícia"
     @State private var sumContent: String = ""
     
-    private var currentMonth: Int = Calendar.current.component(.day, from: Date())
-    private var currentDay: Int = Calendar.current.component(.month, from: Date())
-    private var formattedMonth: String {
-        String(format: "%02d", currentMonth)
-    }
-    private var formattedDay: String {
-        String(format: "%02d", currentDay)
-    }
-    private var currentDayMonth: String {
-        "\(formattedDay)/\(formattedMonth)"
+    let today = Date()
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ddMM", options: 0, locale: Locale.current)
+        return formatter
     }
     
     let mainColor: Color = Color.purple
@@ -49,7 +45,7 @@ struct HomeView: View {
                 
                 //foreground
                 ScrollView {
-                    VStack(spacing: 30) {
+                    VStack(spacing: 20) {
                         VStack(spacing: 10) {
                             sumInputLabel
                             if sumInputTitle == "Resumir notícia" {
@@ -58,7 +54,10 @@ struct HomeView: View {
                                 textTextEditor
                             }
                         }
-                        newsMainCard
+                        VStack(spacing: 10) {
+                            newsMainCard
+                            newsPastCard
+                        }
                         streaks
                     }
                     .padding(20)
@@ -140,7 +139,7 @@ extension HomeView {
                 Text("News")
                     .font(.subheadline)
                     .foregroundColor(Color.secondary)
-                Text(currentDayMonth)
+                Text(dateFormatter.string(from: today))
                     .font(.system(size: 40))
                     .fontWeight(.semibold)
                 Spacer()
@@ -159,11 +158,42 @@ extension HomeView {
         .cornerRadius(20)
     }
     
+    var newsPastCard: some View {
+        VStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 10) {
+                    ForEach(0..<6) { i in
+                        VStack {
+                            Text(dateFormatter.string(from: getPreviousDays(numberOfDaysAgo: i) ?? today))
+                        }
+                        .padding(8)
+                        .padding(.vertical, 5)
+                        .frame(width: 90, height: 100, alignment: .bottomLeading)
+                        .background(Color.secondary.opacity(0.1))
+                        .cornerRadius(20)
+                    }
+                }
+            }
+            HStack {
+                Spacer()
+                Button(action: {
+                    
+                }, label: {
+                    HStack {
+                        Text("Ver mais")
+                        Image(systemName: "arrow.right")
+                    }
+                    .foregroundColor(mainColor)
+                })
+            }
+        }
+    }
+    
     var streaks: some View {
         VStack(spacing: 20) {
             Text("Sequência semanal")
                 .fontWeight(.semibold)
-            HStack {
+            HStack(spacing: (UIScreen.main.bounds.width - 270) / 8) {
                 ForEach(currentWeekStreak.indices) { i in
                     if currentWeekStreak[i] {
                         VStack {
@@ -196,4 +226,9 @@ extension HomeView {
         .background(Color.secondary.opacity(0.1))
         .cornerRadius(20)
     }
+}
+
+//MARK: FUNCTIONS
+func getPreviousDays(numberOfDaysAgo: Int) -> Date? {
+    return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
 }
