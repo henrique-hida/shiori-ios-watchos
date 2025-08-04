@@ -25,6 +25,10 @@
 		B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721272E3C6C3900E45081 /* SecretsReader.swift */; };
 		B48721442E3C792900E45081 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721432E3C792900E45081 /* AIService.swift */; };
 		B48721512E3C81D100E45081 /* SumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721502E3C81D100E45081 /* SumRepository.swift */; };
+		B4D3FB652E40D7E300E3B602 /* SumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB642E40D7E300E3B602 /* SumView.swift */; };
+		B4D3FB712E40D7EF00E3B602 /* SumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB702E40D7EF00E3B602 /* SumViewModel.swift */; };
+		B4D3FB792E40DFC900E3B602 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB782E40DFC900E3B602 /* LoadView.swift */; };
+		B4D3FB8C2E40E36B00E3B602 /* ArticleSumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB8B2E40E36B00E3B602 /* ArticleSumModel.swift */; };
 		B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */; };
 		B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -114,6 +118,10 @@
 		B48721272E3C6C3900E45081 /* SecretsReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsReader.swift; sourceTree = "<group>"; };
 		B48721432E3C792900E45081 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		B48721502E3C81D100E45081 /* SumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumRepository.swift; sourceTree = "<group>"; };
+		B4D3FB642E40D7E300E3B602 /* SumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumView.swift; sourceTree = "<group>"; };
+		B4D3FB702E40D7EF00E3B602 /* SumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumViewModel.swift; sourceTree = "<group>"; };
+		B4D3FB782E40DFC900E3B602 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
+		B4D3FB8B2E40E36B00E3B602 /* ArticleSumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSumModel.swift; sourceTree = "<group>"; };
 		B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +261,8 @@
 		B40B4DFF2E39BE170045A198 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4D3FB772E40DFBB00E3B602 /* LoadView */,
+				B4D3FB632E40D7C800E3B602 /* SumView */,
 				B4EAEFD02E3AEE7400CC1BB0 /* HomeView */,
 			);
 			path = Views;
@@ -261,6 +271,7 @@
 		B40B4E002E39BE230045A198 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B4D3FB8B2E40E36B00E3B602 /* ArticleSumModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,6 +298,23 @@
 				B48721502E3C81D100E45081 /* SumRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		B4D3FB632E40D7C800E3B602 /* SumView */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3FB642E40D7E300E3B602 /* SumView.swift */,
+				B4D3FB702E40D7EF00E3B602 /* SumViewModel.swift */,
+			);
+			path = SumView;
+			sourceTree = "<group>";
+		};
+		B4D3FB772E40DFBB00E3B602 /* LoadView */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3FB782E40DFC900E3B602 /* LoadView.swift */,
+			);
+			path = LoadView;
 			sourceTree = "<group>";
 		};
 		B4EAEFD02E3AEE7400CC1BB0 /* HomeView */ = {
@@ -491,8 +519,12 @@
 				B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */,
 				B48721442E3C792900E45081 /* AIService.swift in Sources */,
 				B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */,
+				B4D3FB8C2E40E36B00E3B602 /* ArticleSumModel.swift in Sources */,
+				B4D3FB792E40DFC900E3B602 /* LoadView.swift in Sources */,
 				B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */,
+				B4D3FB652E40D7E300E3B602 /* SumView.swift in Sources */,
 				B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */,
+				B4D3FB712E40D7EF00E3B602 /* SumViewModel.swift in Sources */,
 				B48721512E3C81D100E45081 /* SumRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

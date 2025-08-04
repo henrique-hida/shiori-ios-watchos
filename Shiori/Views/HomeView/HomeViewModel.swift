@@ -16,8 +16,25 @@ enum SumState {
 }
 
 class HomeViewModel: ObservableObject {
-    @Published var state: SumState = .idle
     private let repository = SumRepository()
+    
+    @Published var sumInputTitle: String = "Resumir notícia"
+    @Published var articleUrlToSum: String = ""
+    @Published var textToSum: String = ""
+    
+    let today = Date()
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ddMM", options: 0, locale: Locale.current)
+        return formatter
+    }
+    
+    @Published var currentWeekStreak: [Bool] = [true, false, true, true, false, false, false]
+    let weekDays: [String] = ["S", "T", "Q", "Q", "S", "S", "D"]
+    
+    
+    @Published var state: SumState = .idle
     
     func summarizeButtonTapped(for url: String) {
         let trimmedUrl = url.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -41,4 +58,10 @@ class HomeViewModel: ObservableObject {
     func resetState() {
         self.state = .idle
     }
+    
+    func getPreviousDays(numberOfDaysAgo: Int) -> Date? {
+        return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
+    }
+    
+    
 }

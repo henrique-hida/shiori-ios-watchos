@@ -12,22 +12,7 @@ struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewModel()
     
-    @State private var sumInputTitle: String = "Resumir notícia"
-    @State private var sumContent: String = ""
-    
-    let today = Date()
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ddMM", options: 0, locale: Locale.current)
-        return formatter
-    }
-    
     let mainColor: Color = Color.purple
-    
-    @State private var currentWeekStreak: [Bool] = [true, false, true, true, false, false, false]
-    private let weekDays: [String] = ["S", "T", "Q", "Q", "S", "S", "D"]
-    
     
     init() {
         let appearance = UINavigationBarAppearance()
@@ -50,13 +35,12 @@ struct HomeView: View {
                     VStack(spacing: 20) {
                         VStack(spacing: 10) {
                             sumInputLabel
-                            if sumInputTitle == "Resumir notícia" {
+                            if viewModel.sumInputTitle == "Resumir notícia" {
                                 urlTextField
                             } else {
                                 textTextEditor
                             }
                         }
-                        resultsView
                         VStack(spacing: 10) {
                             newsMainCard
                             newsPastCard
@@ -86,71 +70,19 @@ struct HomeView_Previews: PreviewProvider {
 
 //MARK: COMPONENTS
 extension HomeView {
-    @ViewBuilder
-        var resultsView: some View {
-            switch viewModel.state {
-                
-            case .idle:
-                EmptyView()
-                
-            case .loading:
-                VStack {
-                    ProgressView()
-                    Text("Resumindo...")
-                        .foregroundColor(.secondary)
-                        .padding(.top, 8)
-                }
-                .padding()
-                
-            case .success(let summaryText):
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Resumo Gerado")
-                        .font(.headline)
-                        .foregroundColor(mainColor)
-                    Text(summaryText)
-                        .font(.body)
-                    Button("Fazer novo resumo") {
-                        viewModel.resetState()
-                        sumContent = ""
-                    }
-                    .padding(.top, 5)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.secondary.opacity(0.1))
-                .cornerRadius(10)
-                
-            case .error(let errorMessage):
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Ocorreu um Erro")
-                        .font(.headline)
-                        .foregroundColor(.red)
-                    Text(errorMessage)
-                        .font(.body)
-                    Button("Tentar Novamente") {
-                        viewModel.resetState()
-                    }
-                    .padding(.top, 5)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.red.opacity(0.1))
-                .cornerRadius(10)
-            }
-        }
     
     var sumInputLabel: some View {
         HStack {
-            Text(sumInputTitle)
+            Text(viewModel.sumInputTitle)
                 .font(.title)
                 .fontWeight(.semibold)
             Menu {
                 Button("Resumir notícia") {
-                    sumInputTitle = "Resumir notícia"
+                    viewModel.sumInputTitle = "Resumir notícia"
                 }
                 .tag("Resumir notícia")
                 Button("Resumir texto") {
-                    sumInputTitle = "Resumir texto"
+                    viewModel.sumInputTitle = "Resumir texto"
                 }
                 .tag("Resumir texto")
             } label: {
@@ -163,11 +95,11 @@ extension HomeView {
     
     var urlTextField: some View {
         HStack {
-            TextField("Cole aqui sua url", text: $sumContent)
+            TextField("Cole aqui sua url", text: $viewModel.articleUrlToSum)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(mainColor)
             Button(action: {
-                viewModel.summarizeButtonTapped(for: sumContent)
+                viewModel.summarizeButtonTapped(for: viewModel.articleUrlToSum)
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(mainColor)
@@ -182,7 +114,7 @@ extension HomeView {
     }
     
     var textTextEditor: some View {
-        TextEditor(text: $sumContent)
+        TextEditor(text: $viewModel.textToSum)
             .frame(height: 200)
             .colorMultiply(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
             .cornerRadius(5)
@@ -195,7 +127,7 @@ extension HomeView {
                 Text("News")
                     .font(.subheadline)
                     .foregroundColor(Color.secondary)
-                Text(dateFormatter.string(from: today))
+                Text(viewModel.dateFormatter.string(from: viewModel.today))
                     .font(.system(size: 40))
                     .fontWeight(.semibold)
                 Spacer()
@@ -220,7 +152,7 @@ extension HomeView {
                 LazyHStack(spacing: 10) {
                     ForEach(0..<6) { i in
                         VStack {
-                            Text(dateFormatter.string(from: getPreviousDays(numberOfDaysAgo: i) ?? today))
+                            Text(viewModel.dateFormatter.string(from: viewModel.getPreviousDays(numberOfDaysAgo: i) ?? viewModel.today))
                         }
                         .padding(8)
                         .padding(.vertical, 5)
@@ -250,15 +182,15 @@ extension HomeView {
             Text("Sequência semanal")
                 .fontWeight(.semibold)
             HStack(spacing: (UIScreen.main.bounds.width - 270) / 8) {
-                ForEach(currentWeekStreak.indices) { i in
-                    if currentWeekStreak[i] {
+                ForEach(viewModel.currentWeekStreak.indices) { i in
+                    if viewModel.currentWeekStreak[i] {
                         VStack {
                             Image(systemName: "flame.fill")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(mainColor)
-                            Text(weekDays[i])
+                            Text(viewModel.weekDays[i])
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -269,7 +201,7 @@ extension HomeView {
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.secondary)
-                            Text(weekDays[i])
+                            Text(viewModel.weekDays[i])
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -282,9 +214,4 @@ extension HomeView {
         .background(Color.secondary.opacity(0.1))
         .cornerRadius(20)
     }
-}
-
-//MARK: FUNCTIONS
-func getPreviousDays(numberOfDaysAgo: Int) -> Date? {
-    return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
 }
