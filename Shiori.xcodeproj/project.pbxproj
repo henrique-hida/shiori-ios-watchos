@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,10 +25,12 @@
 		B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721272E3C6C3900E45081 /* SecretsReader.swift */; };
 		B48721442E3C792900E45081 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721432E3C792900E45081 /* AIService.swift */; };
 		B48721512E3C81D100E45081 /* SumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721502E3C81D100E45081 /* SumRepository.swift */; };
+		B4CC6A6B2E41AFD500A8F824 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = B4CC6A6A2E41AFD500A8F824 /* SwiftyMarkdown */; };
+		B4CC6A722E41B20800A8F824 /* MarkdownViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC6A712E41B20800A8F824 /* MarkdownViewer.swift */; };
 		B4D3FB652E40D7E300E3B602 /* SumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB642E40D7E300E3B602 /* SumView.swift */; };
 		B4D3FB712E40D7EF00E3B602 /* SumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB702E40D7EF00E3B602 /* SumViewModel.swift */; };
-		B4D3FB792E40DFC900E3B602 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB782E40DFC900E3B602 /* LoadView.swift */; };
-		B4D3FB8C2E40E36B00E3B602 /* ArticleSumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB8B2E40E36B00E3B602 /* ArticleSumModel.swift */; };
+		B4D3FB792E40DFC900E3B602 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB782E40DFC900E3B602 /* LoadingView.swift */; };
+		B4D3FB8C2E40E36B00E3B602 /* SumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3FB8B2E40E36B00E3B602 /* SumModel.swift */; };
 		B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */; };
 		B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -118,10 +120,11 @@
 		B48721272E3C6C3900E45081 /* SecretsReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsReader.swift; sourceTree = "<group>"; };
 		B48721432E3C792900E45081 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		B48721502E3C81D100E45081 /* SumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumRepository.swift; sourceTree = "<group>"; };
+		B4CC6A712E41B20800A8F824 /* MarkdownViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewer.swift; sourceTree = "<group>"; };
 		B4D3FB642E40D7E300E3B602 /* SumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumView.swift; sourceTree = "<group>"; };
 		B4D3FB702E40D7EF00E3B602 /* SumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumViewModel.swift; sourceTree = "<group>"; };
-		B4D3FB782E40DFC900E3B602 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
-		B4D3FB8B2E40E36B00E3B602 /* ArticleSumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSumModel.swift; sourceTree = "<group>"; };
+		B4D3FB782E40DFC900E3B602 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		B4D3FB8B2E40E36B00E3B602 /* SumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumModel.swift; sourceTree = "<group>"; };
 		B4EAEFC92E3AEE6200CC1BB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4EAEFD12E3AEE9200CC1BB0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4CC6A6B2E41AFD500A8F824 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +275,7 @@
 		B40B4E002E39BE230045A198 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B4D3FB8B2E40E36B00E3B602 /* ArticleSumModel.swift */,
+				B4D3FB8B2E40E36B00E3B602 /* SumModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -288,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				B48721272E3C6C3900E45081 /* SecretsReader.swift */,
+				B4CC6A712E41B20800A8F824 /* MarkdownViewer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -312,7 +317,7 @@
 		B4D3FB772E40DFBB00E3B602 /* LoadView */ = {
 			isa = PBXGroup;
 			children = (
-				B4D3FB782E40DFC900E3B602 /* LoadView.swift */,
+				B4D3FB782E40DFC900E3B602 /* LoadingView.swift */,
 			);
 			path = LoadView;
 			sourceTree = "<group>";
@@ -344,6 +349,9 @@
 				B40B4DC82E39BDF90045A198 /* PBXTargetDependency */,
 			);
 			name = Shiori;
+			packageProductDependencies = (
+				B4CC6A6A2E41AFD500A8F824 /* SwiftyMarkdown */,
+			);
 			productName = Shiori;
 			productReference = B40B4DA02E39BDF80045A198 /* Shiori.app */;
 			productType = "com.apple.product-type.application";
@@ -455,6 +463,9 @@
 				Base,
 			);
 			mainGroup = B40B4D972E39BDF70045A198;
+			packageReferences = (
+				B4CC6A692E41AFD500A8F824 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
+			);
 			productRefGroup = B40B4DA12E39BDF80045A198 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -517,10 +528,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */,
+				B4CC6A722E41B20800A8F824 /* MarkdownViewer.swift in Sources */,
 				B48721442E3C792900E45081 /* AIService.swift in Sources */,
 				B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */,
-				B4D3FB8C2E40E36B00E3B602 /* ArticleSumModel.swift in Sources */,
-				B4D3FB792E40DFC900E3B602 /* LoadView.swift in Sources */,
+				B4D3FB8C2E40E36B00E3B602 /* SumModel.swift in Sources */,
+				B4D3FB792E40DFC900E3B602 /* LoadingView.swift in Sources */,
 				B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */,
 				B4D3FB652E40D7E300E3B602 /* SumView.swift in Sources */,
 				B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */,
@@ -987,6 +999,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4CC6A692E41AFD500A8F824 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4CC6A6A2E41AFD500A8F824 /* SwiftyMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4CC6A692E41AFD500A8F824 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B40B4D982E39BDF70045A198 /* Project object */;
 }

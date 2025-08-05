@@ -61,7 +61,7 @@ class AIService {
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue(apiKey, forHTTPHeaderField: "X-goog-api-key")
         
-        let prompt = "Por favor, resuma o artigo encontrado nesta URL em um parágrafo conciso: \(articleUrl)"
+        let prompt = "Por favor, resuma o artigo encontrado nesta URL em 3 parágrafos e retorne em formato markdown: \(articleUrl)"
         let requestBody = GeminiRequest(contents: [.init(parts: [.init(text: prompt)])])
         
         do {

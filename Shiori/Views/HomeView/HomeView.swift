@@ -10,7 +10,8 @@ import Foundation
 
 struct HomeView: View {
     
-    @StateObject private var viewModel = HomeViewModel()
+    @EnvironmentObject var sumRepository: SumRepository
+    @StateObject private var viewModel = HomeViewModel
     
     let mainColor: Color = Color.purple
     
@@ -22,32 +23,47 @@ struct HomeView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
+        
+        _viewModel = StateObject(wrappedValue: HomeViewModel(repository: sumRepository))
     }
     
     var body: some View {
         
         NavigationView {
             ZStack {
-                //background
-                
-                //foreground
-                ScrollView {
-                    VStack(spacing: 20) {
-                        VStack(spacing: 10) {
-                            sumInputLabel
-                            if viewModel.sumInputTitle == "Resumir notícia" {
-                                urlTextField
-                            } else {
-                                textTextEditor
+                switch viewModel.state {
+                case .idle:
+                    //background
+                    
+                    //foreground
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            VStack(spacing: 10) {
+                                sumInputLabel
+                                if viewModel.sumInputTitle == "Resumir notícia" {
+                                    urlTextField
+                                } else {
+                                    textTextEditor
+                                }
                             }
+                            VStack(spacing: 10) {
+                                newsMainCard
+                                newsPastCard
+                            }
+                            streaks
                         }
-                        VStack(spacing: 10) {
-                            newsMainCard
-                            newsPastCard
-                        }
-                        streaks
+                        .padding(20)
                     }
-                    .padding(20)
+                    
+                case .loading:
+                    LoadingView()
+                    
+                case .success(let summaryText):
+                    let sumId = viewModel.createSum(content: summaryText, originalUrl: viewModel.articleUrlToSum)
+                    SumView(id: sumId)
+                    
+                case .error(let errorDescription):
+                    Text("Error: \(errorDescription)")
                 }
             }
             .navigationBarTitle(
@@ -99,7 +115,7 @@ extension HomeView {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(mainColor)
             Button(action: {
-                viewModel.summarizeButtonTapped(for: viewModel.articleUrlToSum)
+                viewModel.summarizeUrl(for: viewModel.articleUrlToSum)
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(mainColor)

@@ -36,14 +36,14 @@ class HomeViewModel: ObservableObject {
     
     @Published var state: SumState = .idle
     
-    func summarizeButtonTapped(for url: String) {
+    func summarizeUrl(for url: String) {
         let trimmedUrl = url.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedUrl.isEmpty, URL(string: trimmedUrl) != nil else {
             self.state = .error("Por favor, insira uma URL válida.")
             return
         }
         self.state = .loading
-        repository.getSum(for: trimmedUrl) { [weak self] result in
+        repository.generateSumText(for: trimmedUrl) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let summaryText):
@@ -63,5 +63,9 @@ class HomeViewModel: ObservableObject {
         return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
     }
     
+    func createSum(content: String, originalUrl: String) -> UUID {
+        let newSumId = repository.createSum(content: content, originalUrl: originalUrl)
+        return newSumId
+    }
     
 }

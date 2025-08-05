@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class SumViewModel: ObservableObject {
+    private let repository = SumRepository()
+    
+    var id: UUID
+    @Published var currentSummary: SumModel?
+    
+    init(id: UUID) {
+        self.id = id
+        self.currentSummary = repository.getSum(id: id)
+    }
+}

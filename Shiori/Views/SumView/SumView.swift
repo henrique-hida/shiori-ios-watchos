@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct SumView: View {
+    
+    @StateObject private var viewModel: SumViewModel
+    
+    init(id: UUID) {
+        _viewModel = StateObject(wrappedValue: SumViewModel(id: id))
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            // background
+            
+            // foreground
+            VStack {
+                ScrollView {
+                    MarkdownViewer(markdownString: viewModel.currentSummary?.content ?? "Conteúdo não encontrado")
+                }
+            }
+        }
+        .navigationTitle("Data")
     }
 }
 
 struct SumView_Previews: PreviewProvider {
     static var previews: some View {
-        SumView()
+        SumView(id: UUID())
     }
 }
