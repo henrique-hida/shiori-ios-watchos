@@ -11,7 +11,7 @@ import Foundation
 struct HomeView: View {
     
     @EnvironmentObject var sumRepository: SumRepository
-    @StateObject private var viewModel = HomeViewModel
+    @StateObject private var viewModel = HomeViewModel()
     
     let mainColor: Color = Color.purple
     
@@ -24,7 +24,6 @@ struct HomeView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         
-        _viewModel = StateObject(wrappedValue: HomeViewModel(repository: sumRepository))
     }
     
     var body: some View {
