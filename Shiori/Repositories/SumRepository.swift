@@ -7,29 +7,62 @@
 
 import Foundation
 import Combine
+import FirebaseFirestore
 
 class SumRepository: ObservableObject {
-    @Published var allSummaries: [SumModel] = []
     
     private let apiService = AIService()
+    private let db = Firestore.firestore()
+    
+    let user: String = "João"
+    
 
     func generateSumText(for url: String, completion: @escaping (Result<String, Error>) -> Void) {
         apiService.fetchSummary(for: url, completion: completion)
     }
     
-    func createSum(content: String, originalUrl: String) -> UUID {
-        let newSum = SumModel.init(title: "Título", content: content, wasRead: false, originalUrl: originalUrl)
-        allSummaries.append(newSum)
-        return newSum.id
+    func createSum(content: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
+        let newSum = SumModel.init(title: "Título", content: content, type: type, originalUrl: originalUrl, originalText: originalText, wasRead: false)
+        let docRef = db.collection("users").document(user).collection(newSum.type.rawValue).document()
+        do {
+            try docRef.setData(from: newSum) { error in
+                if let error = error {
+                    print("Erro ao salvar o resumo no Firestore: \(error.localizedDescription)")
+                    completion(nil, error)
+                } else {
+                    print("Resumo salvo com sucesso! ID: \(docRef.documentID)")
+                    completion(docRef.documentID, nil)
+                }
+            }
+        } catch {
+            print("Erro ao codificar o objeto SumModel: \(error.localizedDescription)")
+            completion(nil, error)
+        }
     }
     
-    func getSum(id: UUID) -> SumModel? {
-        for summary in allSummaries {
-            if summary.id == id {
-                return summary
+    func getSum(id: String, type: String, completion: @escaping (SumModel?) -> Void) {
+        let docRef = db.collection("users").document(user).collection(type).document(id)
+        
+        docRef.getDocument { (document, error) in
+            if let error = error {
+                print("Erro ao buscar documento: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                let data = try document.data(as: SumModel.self)
+                completion(data)
+            } catch {
+                print("Erro na decodificação: \(error)")
+                completion(nil)
             }
         }
-        return nil
     }
     
 }

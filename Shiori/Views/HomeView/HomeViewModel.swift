@@ -19,8 +19,6 @@ class HomeViewModel: ObservableObject {
     private let repository = SumRepository()
     
     @Published var sumInputTitle: String = "Resumir notícia"
-    @Published var articleUrlToSum: String = ""
-    @Published var textToSum: String = ""
     
     let today = Date()
     var dateFormatter: DateFormatter {
@@ -35,6 +33,7 @@ class HomeViewModel: ObservableObject {
     
     
     @Published var state: SumState = .idle
+    @Published var sumType: SummaryType? = nil
     
     func summarizeUrl(for url: String) {
         let trimmedUrl = url.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -48,6 +47,7 @@ class HomeViewModel: ObservableObject {
             switch result {
             case .success(let summaryText):
                 self.state = .success(summaryText)
+                self.sumType = .url
                 
             case .failure(let error):
                 self.state = .error("Não foi possível gerar o resumo. Tente novamente. (\(error.localizedDescription))")
@@ -63,9 +63,9 @@ class HomeViewModel: ObservableObject {
         return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
     }
     
-    func createSum(content: String, originalUrl: String) -> UUID {
-        let newSumId = repository.createSum(content: content, originalUrl: originalUrl)
-        return newSumId
+    func createSum(content: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
+        repository.createSum(content: content, type: type, originalUrl: originalUrl, originalText: originalText) { documentID, error in
+            completion(documentID, error)
+        }
     }
-    
 }

@@ -13,6 +13,11 @@ struct HomeView: View {
     @EnvironmentObject var sumRepository: SumRepository
     @StateObject private var viewModel = HomeViewModel()
     
+    @State private var summaryDocumentID: String?
+    @State private var isShowingSumView: Bool = false
+    @State var articleUrlToSum: String = ""
+    @State var textToSum: String = ""
+    
     let mainColor: Color = Color.purple
     
     init() {
@@ -47,7 +52,7 @@ struct HomeView: View {
                             }
                             VStack(spacing: 10) {
                                 newsMainCard
-                                newsPastCard
+                                newsPastCards
                             }
                             streaks
                         }
@@ -58,11 +63,31 @@ struct HomeView: View {
                     LoadingView()
                     
                 case .success(let summaryText):
-                    let sumId = viewModel.createSum(content: summaryText, originalUrl: viewModel.articleUrlToSum)
-                    SumView(id: sumId)
+                    LoadingView()
+                        .onAppear {
+                            if self.summaryDocumentID == nil {
+                                viewModel.createSum(content: summaryText, type: viewModel.sumType ?? .url, originalUrl: articleUrlToSum, originalText: textToSum) { documentID, error in
+                                    if let docID = documentID {
+                                        self.summaryDocumentID = docID
+                                        self.isShowingSumView = true
+                                    } else if let error = error {
+                                        print("Erro ao criar resumo: \(error)")
+                                    }
+                                }
+                            }
+                        }
                     
                 case .error(let errorDescription):
                     Text("Error: \(errorDescription)")
+                }
+                
+                if let docID = summaryDocumentID {
+                    NavigationLink(
+                        destination: SumView(id: docID, type: viewModel.sumType ?? .text),
+                        isActive: $isShowingSumView
+                    ) {
+                        EmptyView()
+                    }
                 }
             }
             .navigationBarTitle(
@@ -110,11 +135,11 @@ extension HomeView {
     
     var urlTextField: some View {
         HStack {
-            TextField("Cole aqui sua url", text: $viewModel.articleUrlToSum)
+            TextField("Cole aqui sua url", text: $articleUrlToSum)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(mainColor)
             Button(action: {
-                viewModel.summarizeUrl(for: viewModel.articleUrlToSum)
+                viewModel.summarizeUrl(for: articleUrlToSum)
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(mainColor)
@@ -129,7 +154,7 @@ extension HomeView {
     }
     
     var textTextEditor: some View {
-        TextEditor(text: $viewModel.textToSum)
+        TextEditor(text: $textToSum)
             .frame(height: 200)
             .colorMultiply(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
             .cornerRadius(5)
@@ -161,7 +186,7 @@ extension HomeView {
         .cornerRadius(20)
     }
     
-    var newsPastCard: some View {
+    var newsPastCards: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 10) {
