@@ -36,26 +36,41 @@ class HomeViewModel: ObservableObject {
     @Published var documentID: String?
     @Published var sumType: String?
     
-    func summarizeUrl(for url: String) {
-        let trimmedUrl = url.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedUrl.isEmpty, URL(string: trimmedUrl) != nil else {
-            self.state = .error("Por favor, insira uma URL válida.")
-            return
-        }
+    func summarizeContent(type: SummaryType, url: String? = nil, text: String? = nil) {
         self.state = .loading
-        repository.generateSumText(url: trimmedUrl, text: nil) { [weak self] result in
+        
+        if type == .url {
+            guard let url = url, !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, URL(string: url) != nil else {
+                self.state = .error("Por favor, insira uma URL válida.")
+                return
+            }
+        }
+        repository.generateSumText(url: url, text: text) { [weak self] result in
             guard let self = self else { return }
+            
             switch result {
             case .success(let summaryText):
-                self.createSum(content: summaryText, type: .url, originalUrl: trimmedUrl) { (documentID, error) in
-                    if let error = error {
-                        self.state = .error("Erro: \(error)")
+                switch type {
+                case .url:
+                    self.createSum(content: summaryText, type: .url, originalUrl: url) { (documentID, error) in
+                        if let error = error {
+                            self.state = .error("Erro: \(error)")
+                        } else if let docID = documentID {
+                            self.state = .success(docID, "url")
+                        }
                     }
-                    if let docID = documentID {
-                        self.state = .success(docID, "url")
+                case .text:
+                    self.createSum(content: summaryText, type: .text, originalText: text) { (documentID, error) in
+                        if let error = error {
+                            self.state = .error("Erro: \(error)")
+                        } else if let docID = documentID {
+                            self.state = .success(docID, "text")
+                        }
                     }
+                case .news:
+                    break
                 }
-                
+
             case .failure(let error):
                 self.state = .error("Não foi possível gerar o resumo. Tente novamente. (\(error.localizedDescription))")
             }

@@ -131,14 +131,13 @@ extension HomeView {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(mainColor)
             Button(action: {
-                viewModel.summarizeUrl(for: articleUrlToSum)
+                viewModel.summarizeContent(type: .url, url: articleUrlToSum)
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(mainColor)
                     .frame(width: 35, height: 35)
                     .overlay(
-                        Image(systemName: "pencil")
-                            .font(Font.title3.weight(.semibold))
+                        Image(systemName: "paperplane.fill")
                             .foregroundColor(.white)
                     )
             })
@@ -146,11 +145,34 @@ extension HomeView {
     }
     
     var textTextEditor: some View {
-        TextEditor(text: $textToSum)
-            .frame(height: 200)
-            .colorMultiply(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
-            .cornerRadius(5)
-            .accentColor(mainColor)
+        VStack {
+            TextEditor(text: $textToSum)
+                .frame(height: 200)
+                .colorMultiply(Color(#colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9568627451, alpha: 1)))
+                .cornerRadius(5)
+                .accentColor(mainColor)
+            
+            Button(action: {
+                viewModel.summarizeContent(type: .text, text: textToSum)
+            }, label: {
+                HStack {
+                    Spacer()
+                    
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(mainColor)
+                        .frame(width: 115, height: 35)
+                        .overlay(
+                            HStack {
+                                Text("Resumir")
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                Image(systemName: "paperplane.fill")
+                                    .foregroundColor(.white)
+                            }
+                    )
+                }
+            })
+        }
     }
     
     var newsMainCard: some View {
