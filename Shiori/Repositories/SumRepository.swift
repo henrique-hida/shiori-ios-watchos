@@ -17,12 +17,12 @@ class SumRepository: ObservableObject {
     let user: String = "João"
     
 
-    func generateSumText(for url: String, completion: @escaping (Result<String, Error>) -> Void) {
-        apiService.fetchSummary(for: url, completion: completion)
+    func generateSumText(url: String?, text: String?, completion: @escaping (Result<String, Error>) -> Void) {
+        apiService.fetchSummary(for: url, for: text, completion: completion)
     }
     
     func createSum(content: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
-        let newSum = SumModel.init(title: "Título", content: content, type: type, originalUrl: originalUrl, originalText: originalText, wasRead: false)
+        let newSum = SumModel.init(title: "Título", content: content, type: type, originalUrl: originalUrl, originalText: originalText)
         let docRef = db.collection("users").document(user).collection(newSum.type.rawValue).document()
         do {
             try docRef.setData(from: newSum) { error in

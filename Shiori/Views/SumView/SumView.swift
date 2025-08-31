@@ -11,8 +11,8 @@ struct SumView: View {
     
     @StateObject private var viewModel: SumViewModel
     
-    init(id: String, type: SummaryType) {
-        _viewModel = StateObject(wrappedValue: SumViewModel(id: id, type: type))
+    init(id: String, type: String) {
+        _viewModel = StateObject(wrappedValue: SumViewModel(id: id, sumType: type))
     }
     
     var body: some View {
@@ -22,25 +22,16 @@ struct SumView: View {
             // foreground
             VStack {
                 ScrollView {
-                    Text(viewModel.currentSummary?.content ?? "Texto falho")
-                        .onAppear(perform: {
-                            printLogs()
-                        })
                     MarkdownViewer(markdownString: viewModel.currentSummary?.content ?? "Conteúdo não encontrado")
                 }
             }
         }
         .navigationTitle("Data")
     }
-    
-    func printLogs() {
-        print(viewModel.currentSummary?.content ?? "Conteúdo não encontrado")
-        print(viewModel.currentSummary?.id ?? "ID Não encontrado")
-    }
 }
 
 struct SumView_Previews: PreviewProvider {
     static var previews: some View {
-        SumView(id: String(), type: .text).environmentObject(SumRepository())
+        SumView(id: String(), type: String())
     }
 }

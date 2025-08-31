@@ -47,7 +47,7 @@ class AIService {
         case dataIsNil
     }
     
-    func fetchSummary(for articleUrl: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchSummary(for articleUrl: String?, for textText: String?, completion: @escaping (Result<String, Error>) -> Void) {
         let apiKey = Config.geminiApiKey
         let endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
         
@@ -61,7 +61,14 @@ class AIService {
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue(apiKey, forHTTPHeaderField: "X-goog-api-key")
         
-        let prompt = "Por favor, resuma o artigo encontrado nesta URL em 3 parágrafos e retorne em formato markdown: \(articleUrl)"
+        var prompt: String
+        
+        if articleUrl != nil {
+            prompt = "Por favor, resuma o artigo encontrado nesta URL em 3 parágrafos e retorne em formato markdown: \(String(describing: articleUrl))"
+        } else {
+            prompt = "Por favor, resuma este texto em 3 parágrafos e retorne em formato markdown: \(String(describing: textText))"
+        }
+        
         let requestBody = GeminiRequest(contents: [.init(parts: [.init(text: prompt)])])
         
         do {

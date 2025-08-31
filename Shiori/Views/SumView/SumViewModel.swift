@@ -11,11 +11,13 @@ class SumViewModel: ObservableObject {
     private let repository = SumRepository()
     
     var id: String
+    var sumType: String
     @Published var currentSummary: SumModel?
     
-    init(id: String, type: SummaryType) {
+    init(id: String, sumType: String) {
         self.id = id
-        repository.getSum(id: id, type: type.rawValue) { [weak self] sumModel in
+        self.sumType = sumType
+        repository.getSum(id: id, type: sumType) { [weak self] sumModel in
             DispatchQueue.main.async {
                 self?.currentSummary = sumModel
             }

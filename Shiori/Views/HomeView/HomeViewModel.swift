@@ -11,7 +11,7 @@ import Combine
 enum SumState {
     case idle
     case loading
-    case success(String)
+    case success(String, String)
     case error(String)
 }
 
@@ -33,7 +33,8 @@ class HomeViewModel: ObservableObject {
     
     
     @Published var state: SumState = .idle
-    @Published var sumType: SummaryType? = nil
+    @Published var documentID: String?
+    @Published var sumType: String?
     
     func summarizeUrl(for url: String) {
         let trimmedUrl = url.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -42,12 +43,18 @@ class HomeViewModel: ObservableObject {
             return
         }
         self.state = .loading
-        repository.generateSumText(for: trimmedUrl) { [weak self] result in
+        repository.generateSumText(url: trimmedUrl, text: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let summaryText):
-                self.state = .success(summaryText)
-                self.sumType = .url
+                self.createSum(content: summaryText, type: .url, originalUrl: trimmedUrl) { (documentID, error) in
+                    if let error = error {
+                        self.state = .error("Erro: \(error)")
+                    }
+                    if let docID = documentID {
+                        self.state = .success(docID, "url")
+                    }
+                }
                 
             case .failure(let error):
                 self.state = .error("Não foi possível gerar o resumo. Tente novamente. (\(error.localizedDescription))")

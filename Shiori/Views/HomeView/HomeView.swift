@@ -13,10 +13,9 @@ struct HomeView: View {
     @EnvironmentObject var sumRepository: SumRepository
     @StateObject private var viewModel = HomeViewModel()
     
-    @State private var summaryDocumentID: String?
-    @State private var isShowingSumView: Bool = false
     @State var articleUrlToSum: String = ""
     @State var textToSum: String = ""
+    @State var showSumView: Bool = false
     
     let mainColor: Color = Color.purple
     
@@ -62,29 +61,22 @@ struct HomeView: View {
                 case .loading:
                     LoadingView()
                     
-                case .success(let summaryText):
+                case .success(let docID, let sumType):
                     LoadingView()
                         .onAppear {
-                            if self.summaryDocumentID == nil {
-                                viewModel.createSum(content: summaryText, type: viewModel.sumType ?? .url, originalUrl: articleUrlToSum, originalText: textToSum) { documentID, error in
-                                    if let docID = documentID {
-                                        self.summaryDocumentID = docID
-                                        self.isShowingSumView = true
-                                    } else if let error = error {
-                                        print("Erro ao criar resumo: \(error)")
-                                    }
-                                }
-                            }
+                            viewModel.documentID = docID
+                            viewModel.sumType = sumType
+                            showSumView = true
                         }
+                        
                     
                 case .error(let errorDescription):
                     Text("Error: \(errorDescription)")
                 }
-                
-                if let docID = summaryDocumentID {
+                if showSumView, let docID = viewModel.documentID, let sumType = viewModel.sumType {
                     NavigationLink(
-                        destination: SumView(id: docID, type: viewModel.sumType ?? .text),
-                        isActive: $isShowingSumView
+                        destination: SumView(id: docID, type: sumType),
+                        isActive: $showSumView
                     ) {
                         EmptyView()
                     }
