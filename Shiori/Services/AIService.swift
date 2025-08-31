@@ -64,9 +64,23 @@ class AIService {
         var prompt: String
         
         if articleUrl != nil {
-            prompt = "Por favor, resuma o artigo encontrado nesta URL em 3 parágrafos e retorne em formato markdown: \(String(describing: articleUrl))"
+            prompt = """
+                Com base no texto do artigo a seguir, elabore um resumo conciso e detalhado em 3 parágrafos de aproximadamente 60 palavras.
+
+                Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo.
+
+                Url para o texto do artigo:
+                \(String(describing: articleUrl))
+            """
         } else {
-            prompt = "Por favor, resuma este texto em 3 parágrafos e retorne em formato markdown: \(String(describing: textText))"
+            prompt = """
+            Com base no texto a seguir, elabore um resumo conciso e detalhado em 3 parágrafos de aproximadamente 60 palavras.
+
+            Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo.
+
+            Texto para resumo:
+            \(String(describing: textText))
+            """
         }
         
         let requestBody = GeminiRequest(contents: [.init(parts: [.init(text: prompt)])])

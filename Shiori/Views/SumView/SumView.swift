@@ -10,21 +10,19 @@ import SwiftUI
 struct SumView: View {
     
     @StateObject private var viewModel: SumViewModel
-    
+
     init(id: String, type: String) {
         _viewModel = StateObject(wrappedValue: SumViewModel(id: id, sumType: type))
     }
-    
+
     var body: some View {
-        ZStack {
-            // background
-            
-            // foreground
-            VStack {
-                ScrollView {
-                    MarkdownViewer(markdownString: viewModel.currentSummary?.content ?? "Conteúdo não encontrado")
-                }
+        ScrollView {
+            VStack(alignment: .leading) {
+                MarkdownLabelView(markdownString: viewModel.currentSummary?.content ?? "")
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .navigationTitle("Data")
     }
@@ -32,6 +30,7 @@ struct SumView: View {
 
 struct SumView_Previews: PreviewProvider {
     static var previews: some View {
-        SumView(id: String(), type: String())
+        SumView(id: "uh0iILS1REC6o0VTzKWN", type: "url")
     }
 }
+
