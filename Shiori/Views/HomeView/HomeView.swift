@@ -80,6 +80,12 @@ struct HomeView: View {
                     ) {
                         EmptyView()
                     }
+                    .onDisappear {
+                        viewModel.resetState()
+                        showSumView = false
+                        textToSum = ""
+                        articleUrlToSum = ""
+                    }
                 }
             }
             .navigationBarTitle(Text("Shiori"), displayMode: .inline)

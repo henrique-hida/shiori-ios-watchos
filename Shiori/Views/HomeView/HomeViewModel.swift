@@ -77,17 +77,19 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func resetState() {
-        self.state = .idle
-    }
-    
-    func getPreviousDays(numberOfDaysAgo: Int) -> Date? {
-        return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
-    }
-    
     func createSum(content: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
         repository.createSum(content: content, type: type, originalUrl: originalUrl, originalText: originalText) { documentID, error in
             completion(documentID, error)
         }
+    }
+    
+    func resetState() {
+        self.state = .idle
+        self.documentID = nil
+        self.sumType = nil
+    }
+    
+    func getPreviousDays(numberOfDaysAgo: Int) -> Date? {
+        return Calendar.current.date(byAdding: .day, value: -numberOfDaysAgo, to: Date())
     }
 }
