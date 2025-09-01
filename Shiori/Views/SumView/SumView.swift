@@ -15,22 +15,86 @@ struct SumView: View {
         _viewModel = StateObject(wrappedValue: SumViewModel(id: id, sumType: type))
     }
 
+    let mainColor: Color = Color.purple
+    @State var playAudio: Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                MarkdownLabelView(markdownString: viewModel.currentSummary?.content ?? "")
-                    .padding(.horizontal)
+        ZStack {
+            VStack(spacing: 0) {
+                ScrollView(showsIndicators: false){
+                    VStack(alignment: .leading) {
+                        MarkdownLabelView(markdownString: viewModel.currentSummary?.content ?? "")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top)
+                    }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.horizontal)
+                
+                ZStack {
+                    Color(#colorLiteral(red: 0.8993570181, green: 0.8993570181, blue: 0.8993570181, alpha: 1))
+                        .ignoresSafeArea()
+                        .frame(height: 100)
+                    
+                    HStack {
+                        Circle()
+                            .foregroundColor(mainColor)
+                            .frame(width: 50, height: 50)
+                            .overlay(
+                                Image(systemName: playAudio ? "pause.fill" : "play.fill")
+                                    .foregroundColor(.white)
+                            )
+                            .onTapGesture {
+                                playAudio.toggle()
+                            }
+                        
+                        Spacer()
+                        
+                        RoundedRectangle(cornerRadius: 25.0)
+                            .frame(width: 290, height: 10)
+                            .foregroundColor(Color.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 25.0)
+                                    .frame(width: 50*2.8, height: 10)
+                                    .foregroundColor(mainColor)
+                                    .overlay(
+                                        Circle()
+                                            .foregroundColor(mainColor)
+                                            .frame(width: 20, height: 20)
+                                            .offset(x: 15)
+                                        , alignment: .trailing
+                                    ), alignment: .leading
+                            )
+                    }
+                    .padding(.horizontal)
+                } .background(Color.red)
+                
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .navigationTitle("Data")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("Resumo", displayMode: .inline)
+        .navigationBarItems(
+            leading:
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                })
+                .accentColor(.primary),
+            trailing:
+                HStack(alignment: .center, spacing: nil) {
+                    Image(systemName: "line.horizontal.3")
+                }
+        )
     }
 }
 
 struct SumView_Previews: PreviewProvider {
     static var previews: some View {
-        SumView(id: "uh0iILS1REC6o0VTzKWN", type: "url")
+        NavigationView {
+            SumView(id: "qCpJJORmlZrLrAYqE043", type: "text")
+        }
     }
 }
 

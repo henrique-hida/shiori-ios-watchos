@@ -82,12 +82,11 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationBarTitle(
-                Text("Shiori"), displayMode: .inline)
+            .navigationBarTitle(Text("Shiori"), displayMode: .inline)
             .navigationBarItems(
                 trailing:
                     HStack(alignment: .center, spacing: nil) {
-                        Image(systemName: "gear")
+                        Image(systemName: "line.horizontal.3")
                     }
             )
         }
