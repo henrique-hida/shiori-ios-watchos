@@ -50,9 +50,11 @@ class HomeViewModel: ObservableObject {
             
             switch result {
             case .success(let summaryText):
+                let sumTitle: String = self.extractTitle(from: summaryText) ?? "Título"
+                
                 switch type {
                 case .url:
-                    self.createSum(content: summaryText, type: .url, originalUrl: url) { (documentID, error) in
+                    self.createSum(content: summaryText, title: sumTitle, type: .url, originalUrl: url) { (documentID, error) in
                         if let error = error {
                             self.state = .error("Erro: \(error)")
                         } else if let docID = documentID {
@@ -60,7 +62,7 @@ class HomeViewModel: ObservableObject {
                         }
                     }
                 case .text:
-                    self.createSum(content: summaryText, type: .text, originalText: text) { (documentID, error) in
+                    self.createSum(content: summaryText, title: sumTitle, type: .text, originalText: text) { (documentID, error) in
                         if let error = error {
                             self.state = .error("Erro: \(error)")
                         } else if let docID = documentID {
@@ -77,10 +79,18 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func createSum(content: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
-        repository.createSum(content: content, type: type, originalUrl: originalUrl, originalText: originalText) { documentID, error in
+    func createSum(content: String, title: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
+        repository.createSum(content: content, title: title, type: type, originalUrl: originalUrl, originalText: originalText) { documentID, error in
             completion(documentID, error)
         }
+    }
+    
+    private func extractTitle(from markdown: String) -> String? {
+        guard let titleLine = markdown.components(separatedBy: .newlines).first(where: { $0.trimmingCharacters(in: .whitespaces).hasPrefix("#") }) else {
+            return nil
+        }
+        let cleanTitle = titleLine.replacingOccurrences(of: "#", with: "").trimmingCharacters(in: .whitespaces)
+        return cleanTitle.isEmpty ? nil : cleanTitle
     }
     
     func resetState() {

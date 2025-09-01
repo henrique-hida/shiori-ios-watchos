@@ -21,8 +21,8 @@ class SumRepository: ObservableObject {
         apiService.fetchSummary(for: url, for: text, completion: completion)
     }
     
-    func createSum(content: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
-        let newSum = SumModel.init(title: "Título", content: content, type: type, originalUrl: originalUrl, originalText: originalText)
+    func createSum(content: String, title: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
+        let newSum = SumModel.init(title: title, content: content, type: type, originalUrl: originalUrl, originalText: originalText)
         let docRef = db.collection("users").document(user).collection(newSum.type.rawValue).document()
         do {
             try docRef.setData(from: newSum) { error in
