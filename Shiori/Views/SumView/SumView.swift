@@ -24,7 +24,7 @@ struct SumView: View {
             VStack(spacing: 0) {
                 ScrollView(showsIndicators: false){
                     VStack(alignment: .leading) {
-                        MarkdownLabelView(markdownString: viewModel.currentSummary?.content ?? "")
+                        MarkdownLabelView(markdownString: viewModel.removeMarkdownBlockMarkers(from: viewModel.currentSummary?.content ?? ""))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.top)
                     }
@@ -93,7 +93,7 @@ struct SumView: View {
 struct SumView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SumView(id: "qCpJJORmlZrLrAYqE043", type: "text")
+            SumView(id: "w24t5f8jnWvNPL5auDO2", type: "url")
         }
     }
 }

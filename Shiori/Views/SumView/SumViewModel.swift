@@ -23,4 +23,18 @@ class SumViewModel: ObservableObject {
             }
         }
     }
+    
+    func removeMarkdownBlockMarkers(from text: String) -> String {
+        var cleanedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if cleanedText.hasPrefix("```markdown") {
+            cleanedText = String(cleanedText.dropFirst("```markdown".count))
+        }
+        
+        if cleanedText.hasSuffix("```") {
+            cleanedText = String(cleanedText.dropLast("```".count))
+        }
+        
+        return cleanedText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
