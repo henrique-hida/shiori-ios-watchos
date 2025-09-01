@@ -39,21 +39,40 @@ struct MarkdownLabelView: UIViewRepresentable {
 
     func updateUIView(_ uiView: WrappingLabel, context: Context) {
         let processed = insertSoftBreaks(in: markdownString, every: 20, threshold: 80)
-
         let md = SwiftyMarkdown(string: processed)
-        md.h1.fontName = ""
+        
+        md.h1.fontName = "H1_PLACEHOLDER"
         md.h1.fontSize = 24
-        md.bold.color = .purple
+
+        md.bold.fontName = "BOLD_PLACEHOLDER"
+        md.bold.fontSize = 17
+
         md.italic.color = .darkGray
 
         let attr = NSMutableAttributedString(attributedString: md.attributedString())
+        let fullRange = NSRange(location: 0, length: attr.length)
+        attr.enumerateAttribute(.font, in: fullRange, options: []) { value, range, _ in
+            guard let currentFont = value as? UIFont else { return }
+
+            var replacementFont: UIFont?
+            if currentFont.fontName.contains("H1_PLACEHOLDER") {
+                replacementFont = UIFont.systemFont(ofSize: 24, weight: .bold)
+            } else if currentFont.fontName.contains("BOLD_PLACEHOLDER") {
+                replacementFont = UIFont.systemFont(ofSize: 17, weight: .bold)
+            }
+
+            if let correctFont = replacementFont {
+                attr.removeAttribute(.font, range: range)
+                attr.addAttribute(.font, value: correctFont, range: range)
+            }
+        }
+
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = .byWordWrapping
-        attr.addAttribute(.paragraphStyle, value: paragraph, range: NSRange(location: 0, length: attr.length))
+        attr.addAttribute(.paragraphStyle, value: paragraph, range: fullRange)
 
         uiView.attributedText = attr
 
-        uiView.preferredMaxLayoutWidth = uiView.bounds.width
         uiView.setNeedsLayout()
         uiView.layoutIfNeeded()
     }

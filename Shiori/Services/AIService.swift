@@ -67,7 +67,7 @@ class AIService {
             prompt = """
                 Com base no texto do artigo a seguir, elabore um resumo conciso e detalhado em 3 parágrafos de aproximadamente 60 palavras.
 
-                Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo.
+                Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo. No título do resumo, não deve haver a palavra resumo ou suas variações, apenas sobre o que o artigo se refere.
 
                 Url para o texto do artigo:
                 \(String(describing: articleUrl))
@@ -76,7 +76,7 @@ class AIService {
             prompt = """
             Com base no texto a seguir, elabore um resumo conciso e detalhado em 3 parágrafos de aproximadamente 60 palavras.
 
-            Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo.
+            Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo. No título do resumo, não deve haver a palavra resumo ou suas variações, apenas sobre o que o texto se refere.
 
             Texto para resumo:
             \(String(describing: textText))
