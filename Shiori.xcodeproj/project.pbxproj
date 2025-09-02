@@ -23,6 +23,9 @@
 		B40B4DE12E39BDFB0045A198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE02E39BDFB0045A198 /* Assets.xcassets */; };
 		B40B4DE42E39BDFB0045A198 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40B4DE32E39BDFB0045A198 /* Preview Assets.xcassets */; };
 		B432546C2E660C70001FD6F2 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B432546B2E660C70001FD6F2 /* TTSService.swift */; };
+		B43254732E66572B001FD6F2 /* GoogleTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43254722E66572B001FD6F2 /* GoogleTTSService.swift */; };
+		B432547A2E665D5C001FD6F2 /* TTSServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43254792E665D5C001FD6F2 /* TTSServiceProtocol.swift */; };
+		B43254812E66646D001FD6F2 /* MockTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43254802E66646D001FD6F2 /* MockTTSService.swift */; };
 		B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721272E3C6C3900E45081 /* SecretsReader.swift */; };
 		B48721442E3C792900E45081 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721432E3C792900E45081 /* AIService.swift */; };
 		B48721512E3C81D100E45081 /* SumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721502E3C81D100E45081 /* SumRepository.swift */; };
@@ -123,6 +126,9 @@
 		B40B4DE52E39BDFB0045A198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B40B4DE62E39BDFB0045A198 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		B432546B2E660C70001FD6F2 /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
+		B43254722E66572B001FD6F2 /* GoogleTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleTTSService.swift; sourceTree = "<group>"; };
+		B43254792E665D5C001FD6F2 /* TTSServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSServiceProtocol.swift; sourceTree = "<group>"; };
+		B43254802E66646D001FD6F2 /* MockTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTTSService.swift; sourceTree = "<group>"; };
 		B48721262E3C686900E45081 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		B48721272E3C6C3900E45081 /* SecretsReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsReader.swift; sourceTree = "<group>"; };
 		B48721432E3C792900E45081 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
@@ -298,6 +304,9 @@
 			children = (
 				B48721432E3C792900E45081 /* AIService.swift */,
 				B432546B2E660C70001FD6F2 /* TTSService.swift */,
+				B43254722E66572B001FD6F2 /* GoogleTTSService.swift */,
+				B43254792E665D5C001FD6F2 /* TTSServiceProtocol.swift */,
+				B43254802E66646D001FD6F2 /* MockTTSService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -547,6 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43254812E66646D001FD6F2 /* MockTTSService.swift in Sources */,
 				B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */,
 				B4CC6A722E41B20800A8F824 /* MarkdownViewer.swift in Sources */,
 				B48721442E3C792900E45081 /* AIService.swift in Sources */,
@@ -558,7 +568,9 @@
 				B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */,
 				B4D3FB712E40D7EF00E3B602 /* SumViewModel.swift in Sources */,
 				B48721512E3C81D100E45081 /* SumRepository.swift in Sources */,
+				B432547A2E665D5C001FD6F2 /* TTSServiceProtocol.swift in Sources */,
 				B432546C2E660C70001FD6F2 /* TTSService.swift in Sources */,
+				B43254732E66572B001FD6F2 /* GoogleTTSService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

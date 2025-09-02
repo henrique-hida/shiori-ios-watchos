@@ -14,4 +14,11 @@ enum Config {
         }
         return gemini_key
     }
+    
+    static var googleTTSApiKey: String {
+        guard let tts_key = Bundle.main.infoDictionary?["TTS_API_KEY"] as? String else {
+            fatalError("Google Cloud TTS APi Key not found in Config.xcconfig")
+        }
+        return tts_key
+    }
 }

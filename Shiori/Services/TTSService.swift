@@ -9,16 +9,18 @@ import Foundation
 import AVFoundation
 import Combine
 
-class TTSService: NSObject, AVSpeechSynthesizerDelegate {
+class TTSService: NSObject, AVSpeechSynthesizerDelegate, TTSServiceProtocol {
     
     private let synthesizer = AVSpeechSynthesizer()
     
-    let progressPublisher = PassthroughSubject<Double, Never>()
+    let progressPublisher = PassthroughSubject<PlaybackProgress, Never>()
     let didFinishPublisher = PassthroughSubject<Void, Never>()
     
     private var currentText: String = ""
     private var characterOffset: Int = 0
     private var speechRate: Float = AVSpeechUtteranceDefaultSpeechRate
+    private var lastKnownRate: Double = 1.0
+    private var estimatedTotalDuration: TimeInterval = 0
     
     override init() {
         super.init()
@@ -39,7 +41,6 @@ class TTSService: NSObject, AVSpeechSynthesizerDelegate {
         guard defaultRate > 0 else { return 0 }
         
         let adjustedWordsPerMinute = normalWordsPerMinute * (Double(self.speechRate) / defaultRate)
-        
         let words = text.split { !$0.isLetter && !$0.isNumber }.count
         
         if adjustedWordsPerMinute > 0 {
@@ -53,42 +54,38 @@ class TTSService: NSObject, AVSpeechSynthesizerDelegate {
         self.speechRate = max(AVSpeechUtteranceMinimumSpeechRate, min(AVSpeechUtteranceMaximumSpeechRate, rate))
     }
     
-    func speak(text: String) {
+    func speak(text: String, rate: Double, seekToProgress: Double? = nil) {
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
         }
         
+        self.lastKnownRate = rate
         self.currentText = text
-        self.characterOffset = 0
         
-        let utterance = AVSpeechUtterance(string: text)
+        let textToSpeak: String
+        
+        if let progress = seekToProgress, progress > 0.0 && progress < 1.0 {
+            let totalLength = (currentText as NSString).length
+            let charIndex = Int(Double(totalLength) * progress)
+            self.characterOffset = charIndex
+            textToSpeak = (currentText as NSString).substring(from: charIndex)
+        } else {
+            self.characterOffset = 0
+            textToSpeak = text
+        }
+        
+        self.estimatedTotalDuration = estimateDuration(for: text, rate: rate)
+        
+        let utterance = AVSpeechUtterance(string: textToSpeak)
         utterance.voice = AVSpeechSynthesisVoice(language: Locale.current.languageCode ?? "pt-BR")
-        utterance.rate = self.speechRate
-        utterance.pitchMultiplier = 1.0
+        let nativeRate = Float(rate * 0.5)
+        utterance.rate = max(AVSpeechUtteranceMinimumSpeechRate, min(AVSpeechUtteranceMaximumSpeechRate, nativeRate))
     
         synthesizer.speak(utterance)
     }
     
     func seek(to percentage: Double) {
-        if synthesizer.isSpeaking {
-            synthesizer.stopSpeaking(at: .immediate)
-        }
-        
-        let clampedPercentage = max(0.0, min(1.0, percentage))
-        
-        let totalLength = (currentText as NSString).length
-        let charIndex = Int(Double(totalLength) * clampedPercentage)
-        
-        self.characterOffset = charIndex
-        
-        let suffixText = (currentText as NSString).substring(from: charIndex)
-        
-        let utterance = AVSpeechUtterance(string: suffixText)
-        utterance.voice = AVSpeechSynthesisVoice(language: Locale.current.languageCode ?? "pt-BR")
-        utterance.rate = self.speechRate
-        utterance.pitchMultiplier = 1.0
-        
-        synthesizer.speak(utterance)
+        speak(text: self.currentText, rate: self.lastKnownRate, seekToProgress: percentage)
     }
     
     func pause() {
@@ -112,7 +109,12 @@ class TTSService: NSObject, AVSpeechSynthesizerDelegate {
         if totalLength > 0 {
             let absoluteLocation = self.characterOffset + characterRange.location
             let progress = Double(absoluteLocation) / totalLength
-            progressPublisher.send(progress)
+            
+            let remainingTime = self.estimatedTotalDuration * (1.0 - progress)
+            let timeDisplay = formatTime(remainingTime)
+            
+            let playbackUpdate = PlaybackProgress(progress: progress, timeDisplay: timeDisplay)
+            progressPublisher.send(playbackUpdate)
         }
     }
     
@@ -126,7 +128,29 @@ class TTSService: NSObject, AVSpeechSynthesizerDelegate {
         
         let finalProgress = Double(self.characterOffset + spokenLength) / totalLength
         if finalProgress >= 0.99 {
+            progressPublisher.send(PlaybackProgress(progress: 1.0, timeDisplay: "-00:00"))
             didFinishPublisher.send()
         }
+    }
+    
+    private func estimateDuration(for text: String, rate: Double) -> TimeInterval {
+        let normalWordsPerMinute = 180.0
+        let adjustedWordsPerMinute = normalWordsPerMinute * rate
+        let words = text.split { !$0.isLetter && !$0.isNumber }.count
+        
+        if adjustedWordsPerMinute > 0 {
+            let minutes = Double(words) / adjustedWordsPerMinute
+            return minutes * 60
+        }
+        return 0
+    }
+    
+    private func formatTime(_ time: TimeInterval) -> String {
+        guard !time.isNaN, !time.isInfinite, time >= 0 else {
+            return "-00:00"
+        }
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "-%02d:%02d", minutes, seconds)
     }
 }

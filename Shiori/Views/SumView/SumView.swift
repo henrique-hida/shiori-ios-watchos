@@ -13,7 +13,15 @@ struct SumView: View {
     @StateObject private var viewModel: SumViewModel
 
     init(id: String, type: String) {
-        _viewModel = StateObject(wrappedValue: SumViewModel(id: id, sumType: type))
+        let useGoogleCloudTTS = true
+        let service: TTSServiceProtocol = useGoogleCloudTTS ? GoogleRESTService() : TTSService()
+        
+        let vm = SumViewModel(id: id, sumType: type, tts: service)
+        _viewModel = StateObject(wrappedValue: vm)
+    }
+    
+    init(viewModel: SumViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     let mainColor: Color = Color.purple
@@ -56,26 +64,26 @@ struct SumView: View {
                         
                         VStack(spacing: 4) {
                             Menu {
-                                Button("0.5x") {
-                                    viewModel.changeSpeed(to: 0.25)
-                                    speedLabel = "0.5"
+                                Button("0.75x") {
+                                    viewModel.changeSpeed(to: 0.75)
+                                    speedLabel = "0.75"
                                 }
-                                .tag("0.5x")
+                                .tag("0.75x")
                                 Button("1.0x") {
-                                    viewModel.changeSpeed(to: 0.5)
+                                    viewModel.changeSpeed(to: 1.0)
                                     speedLabel = "1.0"
                                 }
                                 .tag("1.0x")
-                                Button("1.25x") {
-                                    viewModel.changeSpeed(to: 0.625)
-                                    speedLabel = "1.25"
-                                }
-                                .tag("1.25x")
                                 Button("1.5x") {
-                                    viewModel.changeSpeed(to: 0.75)
+                                    viewModel.changeSpeed(to: 1.5)
                                     speedLabel = "1.5"
                                 }
                                 .tag("1.5x")
+                                Button("1.75x") {
+                                    viewModel.changeSpeed(to: 1.75)
+                                    speedLabel = "1.75"
+                                }
+                                .tag("1.75x")
                             } label: {
                                 Text("\(speedLabel)x")
                                     .fontWeight(.semibold)
@@ -89,7 +97,7 @@ struct SumView: View {
                             }
                             .scaleEffect(y: 1.5)
                             
-                            Text("- \(viewModel.timeDisplay)")
+                            Text(viewModel.timeDisplay)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .trailing)
@@ -198,8 +206,15 @@ extension UIImage {
 
 struct SumView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SumView(id: "w24t5f8jnWvNPL5auDO2", type: "url")
+        let mockService = MockTTSService()
+        
+        let mockViewModel = SumViewModel(id: "preview-id", sumType: "url", tts: mockService)
+        mockViewModel.currentSummary = SumModel(id: "preview", title: "Título de Exemplo", content: "Conteúdo para a preview...", type: .url)
+        mockViewModel.audioProgress = 0.5
+        mockViewModel.timeDisplay = "00:25"
+
+        return NavigationView {
+            SumView(viewModel: mockViewModel)
         }
     }
 }

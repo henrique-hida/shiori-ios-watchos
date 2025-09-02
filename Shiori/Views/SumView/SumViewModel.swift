@@ -15,62 +15,59 @@ class SumViewModel: ObservableObject {
     var sumType: String
     @Published var currentSummary: SumModel?
     
-    private let tts = TTSService()
+    private var tts: TTSServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
     @Published var audioPlaying: Bool = false
     @Published var audioProgress: Double = 0.0
-    @Published var currentSpeed: Float = 0.5
+    @Published var currentSpeed: Double = 1.0
     
     private var isDraggingSlider: Bool = false
     
     @Published var timeDisplay: String = "00:00"
-    private var totalDuration: TimeInterval = 0
     
-    init(id: String, sumType: String) {
+    init(id: String, sumType: String, tts: TTSServiceProtocol) {
         self.id = id
         self.sumType = sumType
+        self.tts = tts
+        
+        self.tts.progressPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] playbackProgress in
+                guard let self = self else { return }
+                if !self.isDraggingSlider {
+                    self.audioProgress = playbackProgress.progress
+                    self.timeDisplay = playbackProgress.timeDisplay
+                }
+            }
+            .store(in: &cancellables)
+        
+        self.tts.didFinishPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.audioPlaying = false
+                self?.audioProgress = 0.0
+            }
+            .store(in: &cancellables)
         
         repository.getSum(id: id, type: sumType) { [weak self] sumModel in
             DispatchQueue.main.async {
                 self?.currentSummary = sumModel
             }
         }
-        
-        tts.progressPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] progress in
-                guard let self = self else { return }
-                if self.isDraggingSlider == false {
-                    self.audioProgress = progress
-                    let remainingTime = self.totalDuration * (1.0 - progress)
-                    self.timeDisplay = self.formatTime(remainingTime)
-                }
-            }
-            .store(in: &cancellables)
-        
-        tts.didFinishPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.audioPlaying = false
-                self?.audioProgress = 0.0
-                if let duration = self?.totalDuration {
-                    self?.timeDisplay = self?.formatTime(duration) ?? "00:00"
-                }
-            }
-            .store(in: &cancellables)
     }
     
     func pressAudioButton() {
         if audioPlaying {
             tts.pause()
         } else {
-            if audioProgress < 0.01 {
-                let textToSpeak = removeMarkdownBlockMarkers(from: currentSummary?.content ?? "Texto não encontrado.")
-                recalculateTotalDuration()
-                tts.speak(text: textToSpeak)
+            if audioProgress > 0.01 && audioProgress < 0.99 {
+                tts.resume()
             } else {
-                tts.seek(to: self.audioProgress)
+                let rawContent = removeMarkdownBlockMarkers(from: currentSummary?.content ?? "")
+                let textToSpeak = stripMarkdown(from: rawContent)
+                guard !textToSpeak.isEmpty else { return }
+                tts.speak(text: textToSpeak, rate: self.currentSpeed, seekToProgress: nil)
             }
         }
         audioPlaying.toggle()
@@ -80,9 +77,6 @@ class SumViewModel: ObservableObject {
         self.isDraggingSlider = isEditing
         self.audioProgress = progress
         
-        let remainingTime = self.totalDuration * (1.0 - progress)
-        self.timeDisplay = self.formatTime(remainingTime)
-        
         if !isEditing {
             tts.seek(to: progress)
             if !audioPlaying {
@@ -91,42 +85,20 @@ class SumViewModel: ObservableObject {
         }
     }
     
-    func changeSpeed(to newSpeed: Float) {
+    func changeSpeed(to newSpeed: Double) {
         self.currentSpeed = newSpeed
-        tts.setSpeechRate(rate: newSpeed)
         
-        recalculateTotalDuration()
-    
-        let remainingTime = self.totalDuration * (1.0 - self.audioProgress)
-        self.timeDisplay = self.formatTime(remainingTime)
-        
-        if audioPlaying {
-            tts.seek(to: self.audioProgress)
+        if audioProgress > 0.01 {
+            let rawContent = removeMarkdownBlockMarkers(from: currentSummary?.content ?? "")
+            let textToSpeak = stripMarkdown(from: rawContent)
+            guard !textToSpeak.isEmpty else { return }
+            
+            tts.speak(text: textToSpeak, rate: self.currentSpeed, seekToProgress: self.audioProgress)
+            
+            if !audioPlaying {
+                audioPlaying = true
+            }
         }
-    }
-    
-    private func recalculateTotalDuration() {
-        let textToSpeak = removeMarkdownBlockMarkers(from: currentSummary?.content ?? "")
-        guard !textToSpeak.isEmpty else {
-            self.totalDuration = 0
-            return
-        }
-        self.totalDuration = tts.estimateDuration(for: textToSpeak)
-        
-        if !audioPlaying {
-            self.timeDisplay = formatTime(self.totalDuration)
-        }
-    }
-    
-    private func formatTime(_ time: TimeInterval) -> String {
-        guard !time.isNaN, !time.isInfinite, time >= 0 else {
-            return "00:00"
-        }
-        
-        let minutes = Int(time) / 60
-        let seconds = Int(time) % 60
-        
-        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     func onDisappear() {
@@ -136,7 +108,6 @@ class SumViewModel: ObservableObject {
         currentSpeed = 0.5
         isDraggingSlider = false
         timeDisplay = "00:00"
-        totalDuration = 0
     }
     
     func removeMarkdownBlockMarkers(from text: String) -> String {
@@ -151,5 +122,18 @@ class SumViewModel: ObservableObject {
         }
         
         return cleanedText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    private func stripMarkdown(from text: String) -> String {
+        var plainText = text
+        
+        plainText = plainText.replacingOccurrences(of: "```markdown", with: "", options: .regularExpression)
+        plainText = plainText.replacingOccurrences(of: "```", with: "", options: .regularExpression)
+        plainText = plainText.replacingOccurrences(of: "^#+\\s*", with: "", options: .regularExpression)
+        plainText = plainText.replacingOccurrences(of: "\\*\\*([^*]+)\\*\\*", with: "$1", options: .regularExpression)
+        plainText = plainText.replacingOccurrences(of: "\\*([^*]+)\\*", with: "$1", options: .regularExpression)
+        plainText = plainText.replacingOccurrences(of: "^[\\*\\-]+\\s+", with: "", options: .regularExpression)
+        
+        return plainText.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
