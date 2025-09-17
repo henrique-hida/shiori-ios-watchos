@@ -47,7 +47,7 @@ class AIService {
         case dataIsNil
     }
     
-    func fetchSummary(for articleUrl: String?, for textText: String?, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchSummary(for articleUrl: String?, for textText: String?, style sumStyle: SummaryStyle, time readTime: Int, completion: @escaping (Result<String, Error>) -> Void) {
         let apiKey = Config.geminiApiKey
         let endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
         
@@ -65,7 +65,8 @@ class AIService {
         
         if articleUrl != nil {
             prompt = """
-                Com base no texto do artigo a seguir, elabore um resumo conciso e detalhado em 3 parágrafos de aproximadamente 60 palavras.
+                Com base no texto do artigo a seguir, elabore um resumo conciso e detalhado dividido em parágrafos de aproximadamente 60 palavras, que somados resultem em \(readTime) minutos de leitura.
+                O estilo que eu quero que você escreva para mim é o \(sumStyle).
 
                 Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo. No título do resumo, não deve haver a palavra resumo ou suas variações, apenas sobre o que o artigo se refere.
 
@@ -74,7 +75,8 @@ class AIService {
             """
         } else {
             prompt = """
-            Com base no texto a seguir, elabore um resumo conciso e detalhado em 3 parágrafos de aproximadamente 60 palavras.
+            Com base no texto a seguir, elabore um resumo conciso e detalhado dividido em parágrafos de aproximadamente 60 palavras, que somados resultem em \(readTime) minutos de leitura.
+            O estilo que eu quero que você escreva para mim é o \(sumStyle).
 
             Sua resposta deve ser **exclusivamente** uma string formatada em Markdown. Use negrito (`**`) para realçar os pontos mais importantes, separe os parágrafos com duas quebras de linha e utilize hashtags para informar títulos, etc., todos os elementos comuns ao markdown estão permitidos. Não adicione qualquer tipo de saudação ou texto extra, apenas o resumo. No título do resumo, não deve haver a palavra resumo ou suas variações, apenas sobre o que o texto se refere.
 

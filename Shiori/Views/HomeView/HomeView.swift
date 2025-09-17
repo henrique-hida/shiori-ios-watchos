@@ -97,6 +97,7 @@ struct HomeView: View {
                     }
                     .onDisappear {
                         viewModel.resetState()
+                        showSumPreferences = false
                         showSumView = false
                         textToSum = ""
                         articleUrlToSum = ""
@@ -356,7 +357,7 @@ struct sumPreferencesSheet: View {
                                 
                             )
                     }
-                    .frame(width: .infinity, height: 45)
+                    .frame(width: 300, height: 45)
                 }
                 
                 VStack(alignment: .leading, spacing: 5) {
@@ -389,15 +390,15 @@ struct sumPreferencesSheet: View {
                                 
                             )
                     }
-                    .frame(width: .infinity, height: 45)
+                    .frame(width: 300, height: 45)
                 }
                 .padding(.bottom)
                 
                 Button(action: {
-                    viewModel.summarizeContent(type: type, toSum: toSum)
+                    viewModel.summarizeContent(type: type, toSum: toSum, sumStyle: viewModel.sumStyle, readTime: viewModel.sumReadTime)
                 }, label: {
                     RoundedRectangle(cornerRadius: 8)
-                        .frame(width: .infinity, height: 45)
+                        .frame(width: 300, height: 45)
                         .foregroundColor(.purple)
                         .overlay(
                             Text("Gerar texto")

@@ -38,7 +38,7 @@ class HomeViewModel: ObservableObject {
     @Published var documentID: String?
     @Published var sumType: String?
     
-    func summarizeContent(type: SummaryType, toSum: String?) {
+    func summarizeContent(type: SummaryType, toSum: String?, sumStyle: SummaryStyle, readTime: Int) {
         self.state = .loading
         var url: String? = nil
         var text: String? = nil
@@ -54,7 +54,7 @@ class HomeViewModel: ObservableObject {
             text = toSum
         }
         
-        repository.generateSumText(url: url, text: text) { [weak self] result in
+        repository.generateSumText(url: url, text: text, sumStyle: sumStyle, readTime: readTime) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -63,7 +63,7 @@ class HomeViewModel: ObservableObject {
                 
                 switch type {
                 case .url:
-                    self.createSum(content: summaryText, title: sumTitle, type: .url, originalUrl: url) { (documentID, error) in
+                    self.createSum(content: summaryText, title: sumTitle, type: .url, originalUrl: url, sumStyle: sumStyle, readTime: readTime) { (documentID, error) in
                         if let error = error {
                             self.state = .error("Erro: \(error)")
                         } else if let docID = documentID {
@@ -71,7 +71,7 @@ class HomeViewModel: ObservableObject {
                         }
                     }
                 case .text:
-                    self.createSum(content: summaryText, title: sumTitle, type: .text, originalText: text) { (documentID, error) in
+                    self.createSum(content: summaryText, title: sumTitle, type: .text, originalText: text, sumStyle: sumStyle, readTime: readTime) { (documentID, error) in
                         if let error = error {
                             self.state = .error("Erro: \(error)")
                         } else if let docID = documentID {
@@ -88,8 +88,8 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func createSum(content: String, title: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
-        repository.createSum(content: content, title: title, type: type, originalUrl: originalUrl, originalText: originalText) { documentID, error in
+    func createSum(content: String, title: String, type: SummaryType, originalUrl: String? = nil, originalText: String? = nil, sumStyle: SummaryStyle, readTime: Int, completion: @escaping (_ documentID: String?, _ error: Error?) -> Void) {
+        repository.createSum(content: content, title: title, type: type, originalUrl: originalUrl, originalText: originalText, sumStyle: sumStyle, readTime: readTime) { documentID, error in
             completion(documentID, error)
         }
     }

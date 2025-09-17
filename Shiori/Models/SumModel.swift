@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-enum SummaryStyle: String {
+enum SummaryStyle: String, Codable {
     case formal
     case informal
     case impartial
@@ -30,6 +30,8 @@ struct SumModel: Identifiable, Codable {
     var title: String
     var content: String
     var type: SummaryType
+    var style: SummaryStyle
+    var readMinutes: Int
     var createdAt: Date = Date()
     
     // Somente para resumo por url

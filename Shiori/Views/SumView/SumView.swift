@@ -209,7 +209,7 @@ struct SumView_Previews: PreviewProvider {
         let mockService = MockTTSService()
         
         let mockViewModel = SumViewModel(id: "preview-id", sumType: "url", tts: mockService)
-        mockViewModel.currentSummary = SumModel(id: "preview", title: "Título de Exemplo", content: "Conteúdo para a preview...", type: .url)
+        mockViewModel.currentSummary = SumModel(id: "preview", title: "Título de Exemplo", content: "Conteúdo para a preview...", type: .url, style: .impartial, readMinutes: 3)
         mockViewModel.audioProgress = 0.5
         mockViewModel.timeDisplay = "00:25"
 
