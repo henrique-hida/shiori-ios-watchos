@@ -19,6 +19,8 @@ class HomeViewModel: ObservableObject {
     private let repository = SumRepository()
     
     @Published var sumInputTitle: String = "Resumir notícia"
+    @Published var sumStyle: SummaryStyle = .informal
+    @Published var sumReadTime: Int = 5
     
     let today = Date()
     var dateFormatter: DateFormatter {
@@ -36,15 +38,22 @@ class HomeViewModel: ObservableObject {
     @Published var documentID: String?
     @Published var sumType: String?
     
-    func summarizeContent(type: SummaryType, url: String? = nil, text: String? = nil) {
+    func summarizeContent(type: SummaryType, toSum: String?) {
         self.state = .loading
+        var url: String? = nil
+        var text: String? = nil
         
         if type == .url {
-            guard let url = url, !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, URL(string: url) != nil else {
+            guard let toSum = toSum, !toSum.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, URL(string: toSum) != nil else {
                 self.state = .error("Por favor, insira uma URL válida.")
                 return
             }
+            url = toSum
         }
+        if type == .text {
+            text = toSum
+        }
+        
         repository.generateSumText(url: url, text: text) { [weak self] result in
             guard let self = self else { return }
             

@@ -8,6 +8,14 @@
 import Foundation
 import FirebaseFirestoreSwift
 
+enum SummaryStyle: String {
+    case formal
+    case informal
+    case impartial
+    case optimistic
+    case gossip
+}
+
 enum SummaryType: String, Codable {
     case news
     case url
