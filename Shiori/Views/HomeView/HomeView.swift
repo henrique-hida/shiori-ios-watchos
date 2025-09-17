@@ -150,10 +150,12 @@ extension HomeView {
         HStack {
             TextField("Cole aqui sua url", text: $articleUrlToSum)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.URL)
                 .accentColor(mainColor)
             Button(action: {
                 if articleUrlToSum != "" {
                     showSumPreferences = true
+                    esconderTeclado()
                     sumType = .url
                     toSum = articleUrlToSum
                 }
@@ -180,6 +182,7 @@ extension HomeView {
             Button(action: {
                 if textToSum != "" {
                     showSumPreferences = true
+                    esconderTeclado()
                     sumType = .text
                     toSum = textToSum
                 }
@@ -297,12 +300,16 @@ extension HomeView {
         .background(Color.secondary.opacity(0.1))
         .cornerRadius(20)
     }
+    
+    func esconderTeclado() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 struct sumPreferencesSheet: View {
     @Binding var showSumPreferences: Bool
     
-    let viewModel: HomeViewModel
+    @ObservedObject var viewModel: HomeViewModel
     let type: SummaryType
     let toSum: String
     
