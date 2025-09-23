@@ -26,6 +26,15 @@
 		B43254732E66572B001FD6F2 /* GoogleTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43254722E66572B001FD6F2 /* GoogleTTSService.swift */; };
 		B432547A2E665D5C001FD6F2 /* TTSServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43254792E665D5C001FD6F2 /* TTSServiceProtocol.swift */; };
 		B43254812E66646D001FD6F2 /* MockTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43254802E66646D001FD6F2 /* MockTTSService.swift */; };
+		B475E95D2E83341200309DFE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B475E95C2E83341200309DFE /* FirebaseAuth */; };
+		B475E95F2E83341200309DFE /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B475E95E2E83341200309DFE /* FirebaseAuthCombine-Community */; };
+		B475E9612E83370B00309DFE /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E9602E83370B00309DFE /* AuthManager.swift */; };
+		B475E9732E833AAA00309DFE /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E9722E833AAA00309DFE /* SignInView.swift */; };
+		B475E97F2E833AB600309DFE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E97E2E833AB600309DFE /* SignInViewModel.swift */; };
+		B475E9872E833B2100309DFE /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E9862E833B2100309DFE /* GettingStartedView.swift */; };
+		B475E98E2E833B2F00309DFE /* GettingStartedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E98D2E833B2F00309DFE /* GettingStartedViewModel.swift */; };
+		B475E99B2E833B7900309DFE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E99A2E833B7900309DFE /* SignUpViewModel.swift */; };
+		B475E9A22E833B8500309DFE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475E9A12E833B8500309DFE /* SignUpView.swift */; };
 		B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721272E3C6C3900E45081 /* SecretsReader.swift */; };
 		B48721442E3C792900E45081 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721432E3C792900E45081 /* AIService.swift */; };
 		B48721512E3C81D100E45081 /* SumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48721502E3C81D100E45081 /* SumRepository.swift */; };
@@ -129,6 +138,13 @@
 		B43254722E66572B001FD6F2 /* GoogleTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleTTSService.swift; sourceTree = "<group>"; };
 		B43254792E665D5C001FD6F2 /* TTSServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSServiceProtocol.swift; sourceTree = "<group>"; };
 		B43254802E66646D001FD6F2 /* MockTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTTSService.swift; sourceTree = "<group>"; };
+		B475E9602E83370B00309DFE /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		B475E9722E833AAA00309DFE /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		B475E97E2E833AB600309DFE /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		B475E9862E833B2100309DFE /* GettingStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedView.swift; sourceTree = "<group>"; };
+		B475E98D2E833B2F00309DFE /* GettingStartedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedViewModel.swift; sourceTree = "<group>"; };
+		B475E99A2E833B7900309DFE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		B475E9A12E833B8500309DFE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B48721262E3C686900E45081 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		B48721272E3C6C3900E45081 /* SecretsReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsReader.swift; sourceTree = "<group>"; };
 		B48721432E3C792900E45081 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
@@ -149,9 +165,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A087392E5E421B00095F7B /* FirebaseAnalyticsSwift in Frameworks */,
+				B475E95D2E83341200309DFE /* FirebaseAuth in Frameworks */,
 				B4A087352E5E421B00095F7B /* FirebaseAnalytics in Frameworks */,
 				B4CC6A6B2E41AFD500A8F824 /* SwiftyMarkdown in Frameworks */,
 				B4A0873B2E5E421B00095F7B /* FirebaseFirestore in Frameworks */,
+				B475E95F2E83341200309DFE /* FirebaseAuthCombine-Community in Frameworks */,
 				B4A087372E5E421B00095F7B /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +209,7 @@
 				B40B4DC92E39BDF90045A198 /* Shiori WatchKit App */,
 				B40B4DD52E39BDFA0045A198 /* Shiori WatchKit Extension */,
 				B40B4DA12E39BDF80045A198 /* Products */,
+				B475E95B2E83341200309DFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -284,6 +303,9 @@
 		B40B4DFF2E39BE170045A198 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B475E9942E833B3200309DFE /* SignUpView */,
+				B475E9852E833B1100309DFE /* GettingStartedView */,
+				B475E9712E833A7900309DFE /* SignInView */,
 				B4D3FB772E40DFBB00E3B602 /* LoadView */,
 				B4D3FB632E40D7C800E3B602 /* SumView */,
 				B4EAEFD02E3AEE7400CC1BB0 /* HomeView */,
@@ -307,6 +329,7 @@
 				B43254722E66572B001FD6F2 /* GoogleTTSService.swift */,
 				B43254792E665D5C001FD6F2 /* TTSServiceProtocol.swift */,
 				B43254802E66646D001FD6F2 /* MockTTSService.swift */,
+				B475E9602E83370B00309DFE /* AuthManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -318,6 +341,40 @@
 				B4CC6A712E41B20800A8F824 /* MarkdownViewer.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B475E95B2E83341200309DFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B475E9712E833A7900309DFE /* SignInView */ = {
+			isa = PBXGroup;
+			children = (
+				B475E9722E833AAA00309DFE /* SignInView.swift */,
+				B475E97E2E833AB600309DFE /* SignInViewModel.swift */,
+			);
+			path = SignInView;
+			sourceTree = "<group>";
+		};
+		B475E9852E833B1100309DFE /* GettingStartedView */ = {
+			isa = PBXGroup;
+			children = (
+				B475E9862E833B2100309DFE /* GettingStartedView.swift */,
+				B475E98D2E833B2F00309DFE /* GettingStartedViewModel.swift */,
+			);
+			path = GettingStartedView;
+			sourceTree = "<group>";
+		};
+		B475E9942E833B3200309DFE /* SignUpView */ = {
+			isa = PBXGroup;
+			children = (
+				B475E9A12E833B8500309DFE /* SignUpView.swift */,
+				B475E99A2E833B7900309DFE /* SignUpViewModel.swift */,
+			);
+			path = SignUpView;
 			sourceTree = "<group>";
 		};
 		B487214F2E3C81AF00E45081 /* Repositories */ = {
@@ -378,6 +435,8 @@
 				B4A087362E5E421B00095F7B /* FirebaseFirestoreSwift */,
 				B4A087382E5E421B00095F7B /* FirebaseAnalyticsSwift */,
 				B4A0873A2E5E421B00095F7B /* FirebaseFirestore */,
+				B475E95C2E83341200309DFE /* FirebaseAuth */,
+				B475E95E2E83341200309DFE /* FirebaseAuthCombine-Community */,
 			);
 			productName = Shiori;
 			productReference = B40B4DA02E39BDF80045A198 /* Shiori.app */;
@@ -558,16 +617,23 @@
 			files = (
 				B43254812E66646D001FD6F2 /* MockTTSService.swift in Sources */,
 				B4EAEFCA2E3AEE6200CC1BB0 /* HomeView.swift in Sources */,
+				B475E9872E833B2100309DFE /* GettingStartedView.swift in Sources */,
 				B4CC6A722E41B20800A8F824 /* MarkdownViewer.swift in Sources */,
 				B48721442E3C792900E45081 /* AIService.swift in Sources */,
+				B475E98E2E833B2F00309DFE /* GettingStartedViewModel.swift in Sources */,
+				B475E9612E83370B00309DFE /* AuthManager.swift in Sources */,
 				B40B4DA42E39BDF80045A198 /* ShioriApp.swift in Sources */,
+				B475E9732E833AAA00309DFE /* SignInView.swift in Sources */,
 				B4D3FB8C2E40E36B00E3B602 /* SumModel.swift in Sources */,
 				B4D3FB792E40DFC900E3B602 /* LoadingView.swift in Sources */,
 				B4EAEFD22E3AEE9200CC1BB0 /* HomeViewModel.swift in Sources */,
 				B4D3FB652E40D7E300E3B602 /* SumView.swift in Sources */,
+				B475E99B2E833B7900309DFE /* SignUpViewModel.swift in Sources */,
 				B48721282E3C6C3900E45081 /* SecretsReader.swift in Sources */,
 				B4D3FB712E40D7EF00E3B602 /* SumViewModel.swift in Sources */,
+				B475E9A22E833B8500309DFE /* SignUpView.swift in Sources */,
 				B48721512E3C81D100E45081 /* SumRepository.swift in Sources */,
+				B475E97F2E833AB600309DFE /* SignInViewModel.swift in Sources */,
 				B432547A2E665D5C001FD6F2 /* TTSServiceProtocol.swift in Sources */,
 				B432546C2E660C70001FD6F2 /* TTSService.swift in Sources */,
 				B43254732E66572B001FD6F2 /* GoogleTTSService.swift in Sources */,
@@ -1053,6 +1119,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B475E95C2E83341200309DFE /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4A087332E5E421B00095F7B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B475E95E2E83341200309DFE /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4A087332E5E421B00095F7B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
 		B4A087342E5E421B00095F7B /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4A087332E5E421B00095F7B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
