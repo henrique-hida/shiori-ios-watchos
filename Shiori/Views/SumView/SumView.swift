@@ -31,6 +31,11 @@ struct SumView: View {
     
     var body: some View {
         ZStack {
+            //background
+            Color("BgColor")
+                .ignoresSafeArea()
+            
+            //foreground
             VStack(spacing: 0) {
                 ScrollView(showsIndicators: false){
                     VStack(alignment: .leading) {
@@ -43,13 +48,13 @@ struct SumView: View {
                 .padding(.horizontal)
                 
                 ZStack {
-                    Color(#colorLiteral(red: 0.8993570181, green: 0.8993570181, blue: 0.8993570181, alpha: 1))
+                    Color("GroupColor")
                         .ignoresSafeArea()
                         .frame(height: 100)
                     
                     HStack {
                         Circle()
-                            .foregroundColor(mainColor)
+                            .foregroundColor(Color("PrimaryColor"))
                             .frame(width: 50, height: 50)
                             .overlay(
                                 Image(systemName: viewModel.audioPlaying ? "pause.fill" : "play.fill")
@@ -89,7 +94,7 @@ struct SumView: View {
                                     .fontWeight(.semibold)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                                     .padding(.trailing, 5)
-                                    .accentColor(mainColor)
+                                    .accentColor(Color("PrimaryColor"))
                             }
                             
                             PlaySlider(value: $viewModel.audioProgress, range: 0...1.0) { isEditing in
@@ -99,7 +104,7 @@ struct SumView: View {
                             
                             Text(viewModel.timeDisplay)
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(Color("SubtitleColor"))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                                 .padding(.trailing, 5)
                         }
@@ -122,10 +127,11 @@ struct SumView: View {
                 }, label: {
                     Image(systemName: "chevron.left")
                 })
-                .accentColor(.primary),
+                .accentColor(Color("SubtitleColor")),
             trailing:
                 HStack(alignment: .center, spacing: nil) {
                     Image(systemName: "line.horizontal.3")
+                        .foregroundColor(Color("SubtitleColor"))
                 }
         )
     }
@@ -139,9 +145,9 @@ struct PlaySlider: UIViewRepresentable {
     
     var thumbSize: CGSize = CGSize(width: 15, height: 10)
     
-    var minTrackColor: UIColor = UIColor(red: 0.68, green: 0.32, blue: 0.87, alpha: 1.0)
+    var minTrackColor: UIColor = UIColor(named: "PrimaryColor")!
     var maxTrackColor: UIColor = .white
-    var thumbColor: UIColor = UIColor(red: 0.68, green: 0.32, blue: 0.87, alpha: 1.0)
+    var thumbColor: UIColor = UIColor(named: "PrimaryColor")!
     
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider()

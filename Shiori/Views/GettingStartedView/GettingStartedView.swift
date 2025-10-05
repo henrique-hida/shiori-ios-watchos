@@ -15,17 +15,19 @@ struct GettingStartedView: View {
     var body: some View {
         ZStack {
             // background
+            Color("BgColor")
+                .ignoresSafeArea()
             
             //foreground
             VStack {
                 VStack(alignment: .leading) {
                     Text("Bem-vindo!")
-                        .foregroundColor(.purple)
+                        .foregroundColor(Color("PrimaryColor"))
                         .fontWeight(.semibold)
                         .font(.system(size: 50))
                     
                     Text("Entre ou cadastre-se")
-                        .foregroundColor(.purple)
+                        .foregroundColor(Color("SubtitleColor"))
                         .font(.title3)
                     
                     Spacer()
@@ -37,12 +39,12 @@ struct GettingStartedView: View {
                             showSignInView = true
                         }, label: {
                             RoundedRectangle(cornerRadius: 25.0)
-                                .stroke(Color.purple, lineWidth: 2.0)
+                                .stroke(Color("PrimaryColor"), lineWidth: 2.0)
                                 .frame(width: 300, height: 50)
                                 .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)))
                                 .overlay(
                                     Text("Entrar")
-                                        .foregroundColor(.purple)
+                                        .foregroundColor(Color("PrimaryColor"))
                                         .fontWeight(.semibold)
                                 )
                         })
@@ -52,7 +54,7 @@ struct GettingStartedView: View {
                         }, label: {
                             Capsule()
                                 .frame(width: 300, height: 50)
-                                .foregroundColor(.purple)
+                                .foregroundColor(Color("PrimaryColor"))
                                 .overlay(
                                     Text("Cadastrar-se")
                                         .foregroundColor(.white)
@@ -67,16 +69,16 @@ struct GettingStartedView: View {
                 
                 VStack {
                     Text("Ou cadastre-se com")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color("SubtitleColor"))
                     
                     HStack(spacing: 20) {
                         Circle()
                             .frame(width: 50, height: 50)
-                            .foregroundColor(.purple)
+                            .foregroundColor(Color("PrimaryColor"))
                         
                         Circle()
                             .frame(width: 50, height: 50)
-                            .foregroundColor(.purple)
+                            .foregroundColor(Color("PrimaryColor"))
                     }
                 }
             }

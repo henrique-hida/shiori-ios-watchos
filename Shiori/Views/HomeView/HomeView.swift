@@ -11,6 +11,8 @@ import Foundation
 
 struct HomeView: View {
     
+    @AppStorage("signed_in") var isUserSignedIn: Bool = false
+    
     @EnvironmentObject var sumRepository: SumRepository
     @StateObject private var viewModel = HomeViewModel()
     
@@ -21,8 +23,6 @@ struct HomeView: View {
     @State var showSumPreferences: Bool = false
     @State var sumType: SummaryType?
     @State var toSum: String?
-    
-    let mainColor: Color = Color.purple
     
     init() {
         let appearance = UINavigationBarAppearance()
@@ -36,14 +36,18 @@ struct HomeView: View {
     }
     
     var body: some View {
-        
         NavigationView {
             ZStack {
                 switch viewModel.state {
                 case .idle:
                     //background
+                    Color("BgColor")
+                        .ignoresSafeArea()
                     
                     //foreground
+                    if !isUserSignedIn {
+                        
+                    }
                     ScrollView {
                         VStack(spacing: 20) {
                             VStack(spacing: 10) {
@@ -118,6 +122,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .preferredColorScheme(.dark)
     }
 }
 
@@ -143,7 +148,7 @@ extension HomeView {
                     .font(Font.title2.weight(.semibold))
             }
         }
-        .foregroundColor(mainColor)
+        .foregroundColor(Color("PrimaryColor"))
     }
     
     var urlTextField: some View {
@@ -151,7 +156,7 @@ extension HomeView {
             TextField("Cole aqui sua url", text: $articleUrlToSum)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.URL)
-                .accentColor(mainColor)
+                .accentColor(Color("PrimaryColor"))
             Button(action: {
                 if articleUrlToSum != "" {
                     showSumPreferences = true
@@ -161,7 +166,7 @@ extension HomeView {
                 }
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(mainColor)
+                    .fill(Color("PrimaryColor"))
                     .frame(width: 35, height: 35)
                     .overlay(
                         Image(systemName: "paperplane.fill")
@@ -177,7 +182,7 @@ extension HomeView {
                 .frame(height: 200)
                 .colorMultiply(Color(#colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9568627451, alpha: 1)))
                 .cornerRadius(5)
-                .accentColor(mainColor)
+                .accentColor(Color("PrimaryColor"))
             
             Button(action: {
                 if textToSum != "" {
@@ -191,7 +196,7 @@ extension HomeView {
                     Spacer()
                     
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(mainColor)
+                        .fill(Color("PrimaryColor"))
                         .frame(width: 115, height: 35)
                         .overlay(
                             HStack {
@@ -212,23 +217,24 @@ extension HomeView {
             VStack(alignment: .leading) {
                 Text("News")
                     .font(.subheadline)
-                    .foregroundColor(Color.secondary)
+                    .foregroundColor(Color("SubtitleColor"))
                 Text(viewModel.dateFormatter.string(from: viewModel.today))
                     .font(.system(size: 40))
                     .fontWeight(.semibold)
+                    .foregroundColor(Color("PrimaryTextColor"))
                 Spacer()
                 Image(systemName: "play.circle.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(mainColor)
+                    .foregroundColor(Color("PrimaryColor"))
             }
             Spacer()
         }
         .padding(15)
         .frame(maxWidth: .infinity)
         .frame(height: 150)
-        .background(Color.secondary.opacity(0.1))
+        .background(Color("GroupColor"))
         .cornerRadius(20)
     }
     
@@ -239,11 +245,12 @@ extension HomeView {
                     ForEach(0..<6) { i in
                         VStack {
                             Text(viewModel.dateFormatter.string(from: viewModel.getPreviousDays(numberOfDaysAgo: i) ?? viewModel.today))
+                                .foregroundColor(Color("SubtitleColor"))
                         }
                         .padding(8)
                         .padding(.vertical, 5)
                         .frame(width: 90, height: 100, alignment: .bottomLeading)
-                        .background(Color.secondary.opacity(0.1))
+                        .background(Color("GroupColor"))
                         .cornerRadius(20)
                     }
                 }
@@ -257,7 +264,7 @@ extension HomeView {
                         Text("Ver mais")
                         Image(systemName: "arrow.right")
                     }
-                    .foregroundColor(mainColor)
+                    .foregroundColor(Color("SubtitleColor"))
                 })
             }
         }
@@ -267,6 +274,7 @@ extension HomeView {
         VStack(spacing: 20) {
             Text("Sequência semanal")
                 .fontWeight(.semibold)
+                .foregroundColor(Color("PrimaryTextColor"))
             HStack(spacing: (UIScreen.main.bounds.width - 270) / 8) {
                 ForEach(viewModel.currentWeekStreak.indices) { i in
                     if viewModel.currentWeekStreak[i] {
@@ -275,7 +283,7 @@ extension HomeView {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
-                                .foregroundColor(mainColor)
+                                .foregroundColor(Color("PrimaryColor"))
                             Text(viewModel.weekDays[i])
                                 .font(.caption)
                                 .foregroundColor(.secondary)
@@ -286,7 +294,7 @@ extension HomeView {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
-                                .foregroundColor(Color.secondary)
+                                .foregroundColor(Color("SubtitleColor"))
                             Text(viewModel.weekDays[i])
                                 .font(.caption)
                                 .foregroundColor(.secondary)
@@ -297,7 +305,7 @@ extension HomeView {
         }
         .padding(15)
         .frame(maxWidth: .infinity)
-        .background(Color.secondary.opacity(0.1))
+        .background(Color("GroupColor"))
         .cornerRadius(20)
     }
     
@@ -355,7 +363,7 @@ struct sumPreferencesSheet: View {
                             .overlay(
                                 HStack {
                                     Text(viewModel.sumStyle.rawValue.capitalized)
-                                        .foregroundColor(.purple)
+                                        .foregroundColor(Color("PrimaryColor"))
                                     Spacer()
                                     Image(systemName: "chevron.down")
                                         .accentColor(.gray)
@@ -388,7 +396,7 @@ struct sumPreferencesSheet: View {
                             .overlay(
                                 HStack {
                                     Text("\(viewModel.sumReadTime) min")
-                                        .foregroundColor(.purple)
+                                        .foregroundColor(Color("PrimaryColor"))
                                     Spacer()
                                     Image(systemName: "chevron.down")
                                         .accentColor(.gray)
@@ -406,7 +414,7 @@ struct sumPreferencesSheet: View {
                 }, label: {
                     RoundedRectangle(cornerRadius: 8)
                         .frame(width: 300, height: 45)
-                        .foregroundColor(.purple)
+                        .foregroundColor(Color("PrimaryColor"))
                         .overlay(
                             Text("Gerar texto")
                                 .foregroundColor(.white)

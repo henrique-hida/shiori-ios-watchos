@@ -43,6 +43,7 @@ struct MarkdownLabelView: UIViewRepresentable {
         
         md.h1.fontName = "H1_PLACEHOLDER"
         md.h1.fontSize = 24
+        md.h1.color = UIColor(named: "PrimaryTextColor")!
 
         md.bold.fontName = "BOLD_PLACEHOLDER"
         md.bold.fontSize = 17

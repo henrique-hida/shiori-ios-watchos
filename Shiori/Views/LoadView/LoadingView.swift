@@ -14,6 +14,8 @@ struct LoadingView: View {
     var body: some View {
         ZStack {
             // background
+            Color("BgColor")
+                .ignoresSafeArea()
             
             // foreground
             VStack {
@@ -23,7 +25,7 @@ struct LoadingView: View {
                     Text("Shiori")
                         .font(.system(size: 70))
                         .fontWeight(.bold)
-                        .foregroundColor(.purple)
+                        .foregroundColor(Color("PrimaryColor"))
                     
                     HStack(spacing: 10) {
                         Text(message)
@@ -33,7 +35,7 @@ struct LoadingView: View {
                             }
                     }
                 }
-                .foregroundColor(.secondary)
+                .foregroundColor(Color("SubtitleColor"))
                 
                 Spacer()
                 Spacer()
