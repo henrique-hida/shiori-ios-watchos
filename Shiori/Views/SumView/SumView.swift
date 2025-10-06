@@ -118,6 +118,17 @@ struct SumView: View {
                 
             }
         }
+        .onAppear {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(named: "BgColor")
+            appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "SubtitleColor") ?? .gray]
+            appearance.shadowColor = .clear
+
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+        }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("Resumo", displayMode: .inline)
         .navigationBarItems(

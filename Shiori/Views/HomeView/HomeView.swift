@@ -24,15 +24,18 @@ struct HomeView: View {
     @State var sumType: SummaryType?
     @State var toSum: String?
     
+    @State var rotateIsologo: Bool = false
+    
     init() {
         let appearance = UINavigationBarAppearance()
-        
-        appearance.configureWithTransparentBackground()
-        
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "BgColor")
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "SubtitleColor") ?? .gray]
+        appearance.shadowColor = .clear
+
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
-        
     }
     
     var body: some View {
@@ -105,6 +108,7 @@ struct HomeView: View {
                         showSumView = false
                         textToSum = ""
                         articleUrlToSum = ""
+                        rotateIsologo = false
                     }
                 }
             }
@@ -112,7 +116,9 @@ struct HomeView: View {
             .navigationBarItems(
                 trailing:
                     HStack(alignment: .center, spacing: nil) {
+                        Spacer()
                         Image(systemName: "line.horizontal.3")
+                            .foregroundColor(Color("SubtitleColor"))
                     }
             )
         }
@@ -163,14 +169,19 @@ extension HomeView {
                     esconderTeclado()
                     sumType = .url
                     toSum = articleUrlToSum
+                    withAnimation(.spring()) {
+                        rotateIsologo.toggle()
+                    }
                 }
             }, label: {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color("PrimaryColor"))
                     .frame(width: 35, height: 35)
                     .overlay(
-                        Image(systemName: "paperplane.fill")
-                            .foregroundColor(.white)
+                        Image("IslWhite")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .rotationEffect(Angle(degrees: rotateIsologo ? 360 : 0))
                     )
             })
         }
@@ -190,6 +201,9 @@ extension HomeView {
                     esconderTeclado()
                     sumType = .text
                     toSum = textToSum
+                    withAnimation(.spring()) {
+                        rotateIsologo.toggle()
+                    }
                 }
             }, label: {
                 HStack {
@@ -203,8 +217,10 @@ extension HomeView {
                                 Text("Resumir")
                                     .fontWeight(.semibold)
                                     .foregroundColor(.white)
-                                Image(systemName: "paperplane.fill")
-                                    .foregroundColor(.white)
+                                Image("IslWhite")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .rotationEffect(Angle(degrees: rotateIsologo ? 360 : 0))
                             }
                     )
                 }
@@ -329,13 +345,14 @@ struct sumPreferencesSheet: View {
                     showSumPreferences = false
                 }, label: {
                     Image(systemName: "xmark")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color("SubtitleColor"))
                 })
                 .accentColor(.primary)
             }
             VStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Estilo do resumo")
+                        .foregroundColor(Color("PrimaryTextColor"))
                     Menu {
                         Button("Informal") {
                             viewModel.sumStyle = .informal
@@ -359,14 +376,14 @@ struct sumPreferencesSheet: View {
                         .tag("Fofoca")
                     } label: {
                         RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color.gray.opacity(0.5), lineWidth: 1.0)
+                            .strokeBorder(Color("SubtitleColor").opacity(0.6), lineWidth: 1.0)
                             .overlay(
                                 HStack {
                                     Text(viewModel.sumStyle.rawValue.capitalized)
                                         .foregroundColor(Color("PrimaryColor"))
                                     Spacer()
                                     Image(systemName: "chevron.down")
-                                        .accentColor(.gray)
+                                        .accentColor(Color("SubtitleColor").opacity(0.6))
                                 }
                                 .padding(.horizontal)
                                 
@@ -377,6 +394,7 @@ struct sumPreferencesSheet: View {
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Duração de leitura")
+                        .foregroundColor(Color("PrimaryTextColor"))
                     Menu {
                         Button("1 minuto") {
                             viewModel.sumReadTime = 1
@@ -392,14 +410,14 @@ struct sumPreferencesSheet: View {
                         .tag("5 minutos")
                     } label: {
                         RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color.gray.opacity(0.5), lineWidth: 1.0)
+                            .strokeBorder(Color("SubtitleColor").opacity(0.6), lineWidth: 1.0)
                             .overlay(
                                 HStack {
                                     Text("\(viewModel.sumReadTime) min")
                                         .foregroundColor(Color("PrimaryColor"))
                                     Spacer()
                                     Image(systemName: "chevron.down")
-                                        .accentColor(.gray)
+                                        .accentColor(Color("SubtitleColor").opacity(0.6))
                                 }
                                 .padding(.horizontal)
                                 

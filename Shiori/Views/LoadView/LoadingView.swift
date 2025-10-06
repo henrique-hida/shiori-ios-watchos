@@ -22,11 +22,9 @@ struct LoadingView: View {
                 Spacer()
                 
                 VStack(spacing: 10) {
-                    Text("Shiori")
-                        .font(.system(size: 70))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("PrimaryColor"))
-                    
+                    Image("ImgPurple")
+                        .resizable()
+                        .frame(width: 280, height: 75)
                     HStack(spacing: 10) {
                         Text(message)
                         ProgressView()
