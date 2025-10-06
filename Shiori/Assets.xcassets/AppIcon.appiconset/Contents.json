@@ -1,103 +1,103 @@
 {
   "images" : [
     {
-      "filename" : "iPhone-notification2x.png",
+      "filename" : "iPh-notification2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "iPhone-notification3x.png",
+      "filename" : "iPh-notification3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "iPhone-settings2x.png",
+      "filename" : "iPh-settings2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "iPhone-settings3x.png",
+      "filename" : "iPh-settings3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "iPhone-spotlight2x.png",
+      "filename" : "iPh-spotlight2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "iPhone-spotlight3x.png",
+      "filename" : "iPh-spotlight3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "iPhone-app2x.png",
+      "filename" : "iPh-app2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "iPhone-app3x.png",
+      "filename" : "iPh-app3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "iPad-notification1x.png",
+      "filename" : "iPa-notification1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "iPad-notification2x.png",
+      "filename" : "iPa-notification2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "iPad-settings1x.png",
+      "filename" : "iPa-settings1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "iPad-settings2x.png",
+      "filename" : "iPa-settings2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "iPad-spotlight1x.png",
+      "filename" : "iPa-spotlight1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "iPad-spotlight2x.png",
+      "filename" : "iPa-spotlight2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "iPad-app1x.png",
+      "filename" : "iPa-app1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "iPad-app2x.png",
+      "filename" : "iPa-app2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "iPadPro-app2x.png",
+      "filename" : "iPaPro-app2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
