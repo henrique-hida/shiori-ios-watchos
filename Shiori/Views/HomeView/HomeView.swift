@@ -26,7 +26,7 @@ struct HomeView: View {
     
     @State var rotateIsologo: Bool = false
     
-    init() {
+    init() { 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor(named: "BgColor")
@@ -48,9 +48,6 @@ struct HomeView: View {
                         .ignoresSafeArea()
                     
                     //foreground
-                    if !isUserSignedIn {
-                        
-                    }
                     ScrollView {
                         VStack(spacing: 20) {
                             VStack(spacing: 10) {
@@ -120,6 +117,14 @@ struct HomeView: View {
                         Image(systemName: "line.horizontal.3")
                             .foregroundColor(Color("SubtitleColor"))
                     }
+            )
+            .background(
+                NavigationLink(
+                    destination: GettingStartedView(),
+                    isActive: .constant(!isUserSignedIn)
+                ) {
+                    EmptyView()
+                }
             )
         }
     }
